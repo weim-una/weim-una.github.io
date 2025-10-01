@@ -1,743 +1,526 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>千束町 歯のクリニック ガイダンス</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-            background: linear-gradient(135deg, #FFE5E5 0%, #FFF0F5 50%, #E8F5FF 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 960px;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(255,182,193,0.3);
-            overflow: hidden;
-        }
-
-        .slide {
-            display: none;
-            padding: 60px;
-            min-height: 600px;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .slide.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .slide-cover {
-            background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #E0BBE4 100%);
-            color: #4A4A4A;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .slide-cover h1 {
-            font-size: 3em;
-            margin-bottom: 30px;
-            font-weight: 700;
-            color: #FF69B4;
-        }
-
-        .slide-cover .tagline {
-            font-size: 2em;
-            margin-bottom: 40px;
-            font-weight: 600;
-            background: rgba(255,255,255,0.7);
-            padding: 20px 40px;
-            border-radius: 50px;
-            color: #D87093;
-        }
-
-        .slide-cover .greeting {
-            font-size: 1.3em;
-            color: #4A4A4A;
-        }
-
-        h2 {
-            font-size: 2.5em;
-            color: #FFB6C1;
-            margin-bottom: 30px;
-            border-bottom: 4px solid #FFD4E5;
-            padding-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 1.8em;
-            color: #E0BBE4;
-            margin: 25px 0 15px 0;
-        }
-
-        .content {
-            font-size: 1.2em;
-            line-height: 1.8;
-            color: #4A4A4A;
-        }
-
-        .highlight {
-            background: linear-gradient(transparent 60%, #FFDAB9 60%);
-            font-weight: 600;
-            padding: 0 5px;
-            color: #D87093;
-        }
-
-        .bullet-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .bullet-list li {
-            padding: 15px 0 15px 40px;
-            position: relative;
-            font-size: 1.2em;
-        }
-
-        .bullet-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #FFB6C1;
-            font-weight: bold;
-            font-size: 1.5em;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #FFF5F7 0%, #F8E8EE 100%);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #FFB6C1;
-            box-shadow: 0 5px 15px rgba(255,182,193,0.2);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
-            border: 2px solid #FFD4E5;
-            padding: 20px;
-            border-radius: 20px;
-            transition: transform 0.3s;
-            box-shadow: 0 5px 15px rgba(255,182,193,0.15);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255,182,193,0.3);
-        }
-
-        .feature-card h4 {
-            color: #FF69B4;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #FFF5F7 0%, #FFE8F0 100%);
-            border-top: 2px solid #FFD4E5;
-        }
-
-        .nav-btn {
-            background: linear-gradient(135deg, #FFB6C1 0%, #FFD4E5 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255,182,193,0.3);
-        }
-
-        .nav-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255,182,193,0.4);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .slide-counter {
-            font-size: 1em;
-            color: #D87093;
-            font-weight: 600;
-        }
-
-        .emoji {
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-
-        .contact-box {
-            background: linear-gradient(135deg, #FFB6C1 0%, #E0BBE4 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 25px;
-            text-align: center;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(255,182,193,0.4);
-        }
-
-        .contact-box h3 {
-            color: white;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        .contact-box p {
-            font-size: 1.3em;
-            margin: 10px 0;
-        }
-
-        .qa-item {
-            background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 15px 0;
-            border-left: 4px solid #FFB6C1;
-            box-shadow: 0 3px 10px rgba(255,182,193,0.15);
-        }
-
-        .qa-item strong {
-            color: #FF69B4;
-            font-size: 1.2em;
-        }
-
-        .special-box {
-            background: linear-gradient(135deg, #FFB6C1 0%, #FFD4E5 100%);
-            color: white;
-            border: none;
-            text-align: center;
-            font-size: 1.3em;
-            margin-top: 40px;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(255,182,193,0.4);
-        }
-
-        /* タブレット対応 */
-        @media (max-width: 1024px) {
-            .slide {
-                padding: 50px;
-            }
-
-            .slide-cover h1 {
-                font-size: 2.5em;
-            }
-
-            .slide-cover .tagline {
-                font-size: 1.7em;
-                padding: 15px 30px;
-            }
-
-            h2 {
-                font-size: 2.2em;
-            }
-
-            .bullet-list li {
-                font-size: 1.1em;
-            }
-        }
-
-        /* スマートフォン対応 */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                border-radius: 20px;
-            }
-
-            .slide {
-                padding: 30px 25px;
-                min-height: auto;
-            }
-
-            .slide-cover {
-                padding: 40px 20px;
-            }
-
-            .slide-cover h1 {
-                font-size: 1.8em;
-                margin-bottom: 20px;
-            }
-
-            .slide-cover .tagline {
-                font-size: 1.2em;
-                padding: 15px 25px;
-                margin-bottom: 30px;
-            }
-
-            .slide-cover .greeting {
-                font-size: 1.1em;
-            }
-
-            h2 {
-                font-size: 1.6em;
-                margin-bottom: 20px;
-                padding-bottom: 10px;
-            }
-
-            .content {
-                font-size: 1em;
-            }
-
-            .bullet-list li {
-                font-size: 1em;
-                padding: 12px 0 12px 35px;
-            }
-
-            .bullet-list li:before {
-                font-size: 1.3em;
-            }
-
-            .info-box {
-                padding: 20px;
-                font-size: 0.95em;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .feature-card {
-                padding: 18px;
-            }
-
-            .feature-card h4 {
-                font-size: 1.2em;
-            }
-
-            .qa-item {
-                padding: 18px;
-                font-size: 0.95em;
-            }
-
-            .qa-item strong {
-                font-size: 1.1em;
-            }
-
-            .contact-box {
-                padding: 25px 20px;
-            }
-
-            .contact-box h3 {
-                font-size: 1.6em;
-            }
-
-            .contact-box p {
-                font-size: 1.1em;
-            }
-
-            .special-box {
-                padding: 25px 20px;
-                font-size: 1.1em;
-            }
-
-            .special-box h3 {
-                font-size: 1.6em !important;
-            }
-
-            .navigation {
-                padding: 15px 20px;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .nav-btn {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-
-            .slide-counter {
-                font-size: 0.9em;
-                order: -1;
-                width: 100%;
-                text-align: center;
-                margin-bottom: 10px;
-            }
-
-            .emoji {
-                font-size: 1.3em;
-            }
-        }
-
-        /* 小型スマートフォン対応 */
-        @media (max-width: 480px) {
-            .slide {
-                padding: 25px 20px;
-            }
-
-            .slide-cover h1 {
-                font-size: 1.5em;
-            }
-
-            .slide-cover .tagline {
-                font-size: 1em;
-                padding: 12px 20px;
-            }
-
-            .slide-cover .greeting {
-                font-size: 1em;
-            }
-
-            h2 {
-                font-size: 1.4em;
-            }
-
-            .bullet-list li {
-                font-size: 0.95em;
-                padding: 10px 0 10px 30px;
-            }
-
-            .feature-card {
-                padding: 15px;
-            }
-
-            .feature-card h4 {
-                font-size: 1.1em;
-            }
-
-            .nav-btn {
-                padding: 8px 15px;
-                font-size: 0.85em;
-            }
-        }
-
-        /* 横向き表示の最適化 */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .slide {
-                min-height: auto;
-                padding: 30px;
-            }
-
-            .slide-cover {
-                padding: 30px;
-            }
-
-            .slide-cover h1 {
-                font-size: 2em;
-                margin-bottom: 15px;
-            }
-
-            .slide-cover .tagline {
-                font-size: 1.3em;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>千束町 歯のクリニック ガイダンス</title>
+  <style>
+    :root{
+      --bg-grad: linear-gradient(135deg, #FFE5E5 0%, #FFF0F5 50%, #E8F5FF 100%);
+      --pink: #FFB6C1;
+      --pink-2:#FFD4E5;
+      --hot:#FF69B4;
+      --violet:#E0BBE4;
+      --text:#4A4A4A;
+      --accent:#D87093;
+    }
+
+    *{ box-sizing: border-box; }
+
+    html, body{
+      height: 100%;
+    }
+
+    body{
+      margin: 0;
+      -webkit-text-size-adjust: 100%;
+      font-family: 'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP', system-ui, -apple-system, sans-serif;
+      background: var(--bg-grad);
+      display: flex;
+      justify-content: center;
+      padding: env(safe-area-inset-top) 16px calc(env(safe-area-inset-bottom) + 80px) 16px; /* 下にナビ分の余白 */
+      color: var(--text);
+      min-height: 100dvh;
+      line-height: 1.65;
+    }
+
+    .container{
+      width: min(100%, 920px);
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 16px 48px rgba(255,182,193,0.28);
+      overflow: clip;
+    }
+
+    /* スライド共通：固定高さをやめ、モバイルでスクロール可能に */
+    .slide{
+      display: none;
+      padding: clamp(20px, 4vw, 60px);
+      animation: fadeIn .35s ease-in;
+    }
+    .slide.active{ display: block; }
+
+    @keyframes fadeIn{
+      from{ opacity: 0; transform: translateY(8px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .slide{ animation: none; }
+    }
+
+    /* カバー */
+    .slide-cover{
+      background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #E0BBE4 100%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+    .slide-cover h1{
+      font-size: clamp(22px, 6vw, 48px);
+      margin: 0 0 6px;
+      font-weight: 800;
+      color: var(--hot);
+      letter-spacing: .02em;
+    }
+    .slide-cover .tagline{
+      font-size: clamp(16px, 4.5vw, 28px);
+      font-weight: 700;
+      background: rgba(255,255,255,.75);
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: var(--accent);
+      display: inline-block;
+      margin-inline: auto;
+    }
+    .slide-cover .greeting{
+      font-size: clamp(14px, 4vw, 20px);
+    }
+
+    /* 見出し・本文 */
+    h2{
+      font-size: clamp(18px, 5.2vw, 36px);
+      color: var(--pink);
+      margin: 0 0 14px;
+      border-bottom: 3px solid var(--pink-2);
+      padding-bottom: 10px;
+      letter-spacing: .01em;
+    }
+    h3{
+      font-size: clamp(16px, 4.5vw, 24px);
+      color: var(--violet);
+      margin: 18px 0 10px;
+    }
+    .content{
+      font-size: clamp(14px, 4vw, 18px);
+    }
+
+    .highlight{
+      background: linear-gradient(transparent 62%, #FFDAB9 62%);
+      font-weight: 700;
+      padding: 0 2px;
+      color: var(--accent);
+    }
+
+    /* 箇条書き */
+    .bullet-list{
+      list-style: none;
+      margin: 12px 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .bullet-list li{
+      position: relative;
+      padding-left: 28px;
+    }
+    .bullet-list li::before{
+      content: "✓";
+      position: absolute;
+      left: 0; top: 0;
+      color: var(--pink);
+      font-weight: 800;
+      font-size: 1.1em;
+      line-height: 1;
+      transform: translateY(2px);
+    }
+
+    .info-box{
+      background: linear-gradient(135deg, #FFF5F7 0%, #F8E8EE 100%);
+      padding: clamp(12px, 3.5vw, 24px);
+      border-radius: 16px;
+      margin-top: 12px;
+      border-left: 5px solid var(--pink);
+      box-shadow: 0 6px 16px rgba(255,182,193,.18);
+    }
+
+    /* グリッド：モバイルは1列、広いと2列 */
+    .feature-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 560px){
+      .feature-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .feature-card{
+      background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
+      border: 2px solid var(--pink-2);
+      padding: clamp(12px, 3.2vw, 20px);
+      border-radius: 16px;
+      box-shadow: 0 5px 14px rgba(255,182,193,.15);
+      transition: transform .2s ease;
+    }
+    .feature-card:hover{ transform: translateY(-3px); }
+    .feature-card h4{
+      color: var(--hot);
+      font-size: clamp(14px, 4.2vw, 21px);
+      margin: 0 0 6px;
+    }
+
+    .qa-item{
+      background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
+      padding: clamp(12px, 3.2vw, 18px);
+      border-radius: 14px;
+      margin: 10px 0;
+      border-left: 4px solid var(--pink);
+      box-shadow: 0 3px 10px rgba(255,182,193,.15);
+    }
+    .qa-item strong{
+      color: var(--hot);
+      font-size: 1em;
+    }
+
+    .special-box{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
+      color: #fff;
+      text-align: center;
+      font-size: clamp(14px, 4.2vw, 19px);
+      margin-top: 16px;
+      padding: clamp(14px, 3.8vw, 24px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255,182,193,.35);
+    }
+
+    .contact-box{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--violet) 100%);
+      color: #fff;
+      padding: clamp(16px, 4.5vw, 30px);
+      border-radius: 20px;
+      text-align: center;
+      margin: 16px 0;
+      box-shadow: 0 10px 30px rgba(255,182,193,.35);
+    }
+    .contact-box h3{
+      color: #fff;
+      font-size: clamp(18px, 5.2vw, 28px);
+      margin: 0 0 10px;
+    }
+    .contact-box p{
+      font-size: clamp(14px, 4.2vw, 20px);
+      margin: 6px 0;
+    }
+
+    .emoji{ font-size: 1.2em; margin-right: 6px; }
+
+    /* ナビ：下部貼り付き（iPhoneセーフエリア考慮） */
+    .navigation{
+      position: sticky;
+      bottom: 0;
+      inset-inline: 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(135deg, #FFF5F7 0%, #FFE8F0 100%);
+      border-top: 2px solid var(--pink-2);
+      box-shadow: 0 -8px 20px rgba(255,182,193,.18);
+      z-index: 10;
+    }
+    .nav-btn{
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: clamp(14px, 4.3vw, 16px);
+      font-weight: 700;
+      transition: transform .15s ease;
+      box-shadow: 0 6px 16px rgba(255,182,193,.32);
+      min-height: 48px; /* タップしやすさ */
+    }
+    .nav-btn:active{ transform: scale(.98); }
+    .nav-btn:disabled{ opacity: .35; cursor: not-allowed; }
+    .slide-counter{
+      text-align: center;
+      font-size: clamp(12px, 3.8vw, 14px);
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 88px;
+    }
+
+    /* 横向き最適化 */
+    @media (orientation: landscape) and (max-width: 932px){
+      body{ padding-bottom: calc(env(safe-area-inset-bottom) + 72px); }
+      .navigation{ padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- スライド1: 表紙 -->
-        <div class="slide slide-cover active">
-            <h1>千束町 歯のクリニック</h1>
-            <div class="tagline">「笑顔とやさしさを広げる」</div>
-            <div class="greeting">学生のみなさん、こんにちは！</div>
+  <div class="container" id="deck">
+    <!-- 1: 表紙 -->
+    <section class="slide slide-cover active" aria-label="表紙">
+      <h1>千束町 歯のクリニック</h1>
+      <div class="tagline">「笑顔とやさしさを広げる」</div>
+      <p class="greeting">学生のみなさん、こんにちは！</p>
+    </section>
+
+    <!-- 2: 医院紹介 -->
+    <section class="slide" aria-label="医院紹介">
+      <h2>🏥 医院紹介</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li>土浦市千束町の大きな交差点にある歯科クリニック</li>
+          <li>アクセス良好（車・自転車・徒歩OK）</li>
+          <li>患者さんもスタッフも <span class="highlight">自然な笑顔で安心できる雰囲気</span></li>
+        </ul>
+        <div class="info-box">
+          地域に根ざした、通いやすい歯科クリニックです。明るく開放的な空間で、患者様に安心して治療を受けていただけます。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド2: 医院紹介 -->
-        <div class="slide">
-            <h2>🏥 医院紹介</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li>土浦市千束町の大きな交差点にある歯科クリニック</li>
-                    <li>アクセス良好（車・自転車・徒歩OK）</li>
-                    <li>患者さんもスタッフも<span class="highlight">自然な笑顔で安心できる雰囲気</span></li>
-                </ul>
-                <div class="info-box">
-                    <p>地域に根ざした、通いやすい歯科クリニックです。明るく開放的な空間で、患者様に安心して治療を受けていただけます。</p>
-                </div>
-            </div>
+    <!-- 3: 私たちの理念 -->
+    <section class="slide" aria-label="私たちの理念">
+      <h2>💖 私たちの理念</h2>
+      <div class="content">
+        <div class="special-box"><strong>「笑顔とやさしさを広げる」</strong></div>
+        <ul class="bullet-list">
+          <li>スタッフ・患者様・地域、関わるすべての方を大切に</li>
+          <li>いつも自然な笑顔で対応しています</li>
+          <li>一人ひとりの成長を応援し合える環境</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4: 魅力① 人間関係 -->
+    <section class="slide" aria-label="魅力：人間関係">
+      <h2>✨ 魅力① 人間関係</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li><span class="highlight">院長が優しい！</span></li>
+          <li>怖い先輩・上司はいません</li>
+          <li>スタッフみんな仲良し＆協力し合える雰囲気</li>
+        </ul>
+        <div class="info-box">
+          アットホームで温かい職場。分からないことは何でも聞ける、風通しの良いチームです。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド3: 私たちの理念 -->
-        <div class="slide">
-            <h2>💖 私たちの理念</h2>
-            <div class="content">
-                <div class="special-box">
-                    <h3 style="color: white; text-align: center; font-size: 2.2em; margin: 0;">「笑顔とやさしさを広げる」</h3>
-                </div>
-                <ul class="bullet-list">
-                    <li>スタッフ・患者様・地域、関わるすべての方を大切に</li>
-                    <li>いつも自然な笑顔で対応しています</li>
-                    <li>一人ひとりの成長を応援し合える環境</li>
-                </ul>
-            </div>
+    <!-- 5: 魅力② 環境 -->
+    <section class="slide" aria-label="魅力：環境">
+      <h2>🏢 魅力② 環境</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li>2020年4月オープンの <span class="highlight">新しく清潔でおしゃれな医院</span></li>
+          <li>開放的な雰囲気で最新設備を導入</li>
+          <li>石膏や注油も自動化 → 仕事がスムーズ</li>
+        </ul>
+        <div class="info-box">
+          最新設備と快適な環境で効率的に働けます。清潔で明るい空間はスタッフにも患者様にも好評です。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド4: 魅力① 人間関係 -->
-        <div class="slide">
-            <h2>✨ 魅力① 人間関係</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li><span class="highlight">院長が優しい！</span></li>
-                    <li>怖い先輩・上司はいません</li>
-                    <li>スタッフみんな仲良し＆協力し合える雰囲気</li>
-                </ul>
-                <div class="info-box">
-                    <p>アットホームで温かい職場環境です。分からないことは何でも聞ける、風通しの良い職場です。チーム全体で支え合いながら働けます。</p>
-                </div>
-            </div>
+    <!-- 6: 魅力③ 制服 -->
+    <section class="slide" aria-label="魅力：制服">
+      <h2>👗 魅力③ 制服</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li><span class="highlight">ジェラートピケのスクラブ</span>（全5種類）</li>
+          <li>季節ごとに着替えOK</li>
+          <li>カーディガン・ヒートテックなども支給</li>
+          <li>かわいくて働きやすい！</li>
+        </ul>
+        <div class="info-box">
+          おしゃれで機能的なユニフォーム。季節に合わせて快適に働けます。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド5: 魅力② 環境 -->
-        <div class="slide">
-            <h2>🏢 魅力② 環境</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li>2020年4月オープンの<span class="highlight">新しく清潔でおしゃれな医院</span></li>
-                    <li>開放的な雰囲気で最新設備を導入</li>
-                    <li>石膏や注油も自動化 → 仕事がスムーズ</li>
-                </ul>
-                <div class="info-box">
-                    <p>最新の設備と快適な環境で、効率的に働けます。清潔で明るい空間は、スタッフにも患者様にも好評です。</p>
-                </div>
-            </div>
+    <!-- 7: 魅力④ 新人研修 -->
+    <section class="slide" aria-label="魅力：新人研修">
+      <h2>📚 魅力④ 新人研修</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li><span class="highlight">安心の研修システム</span></li>
+          <li>先輩がマンツーマンで丁寧に指導</li>
+          <li>メディア実績ある先生が来院、最前線の学びを得られます。</li>
+        </ul>
+        <div class="info-box">
+          基礎から丁寧に。未経験でも安心してスタートできます。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド6: 魅力③ 制服 -->
-        <div class="slide">
-            <h2>👗 魅力③ 制服</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li><span class="highlight">ジェラートピケのスクラブ</span>（全5種類）</li>
-                    <li>季節ごとに着替えOK</li>
-                    <li>カーディガン・ヒートテックなども支給</li>
-                    <li>かわいくて働きやすい！</li>
-                </ul>
-                <div class="info-box">
-                    <p>おしゃれで機能的なユニフォームを用意しています。季節に合わせて快適に働ける環境づくりを大切にしています。</p>
-                </div>
-            </div>
+    <!-- 8: 魅力⑤ 患者層 -->
+    <section class="slide" aria-label="魅力：患者層">
+      <h2>👨‍👩‍👧‍👦 魅力⑤ 患者層</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li>小児からご高齢の方まで幅広い患者様</li>
+          <li>予防歯科・小児歯科・インプラントなど幅広い診療</li>
+          <li><span class="highlight">衛生士業務をしっかり任せてもらえる環境</span></li>
+        </ul>
+        <div class="info-box">
+          多様な症例を経験でき、専門性を高められます。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド7: 魅力④ 新人研修 -->
-        <div class="slide">
-            <h2>📚 魅力④ 新人研修</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li><span class="highlight">安心の研修システム</span></li>
-                    <li>先輩がマンツーマンで丁寧に指導</li>
-                    <li>大学実習生の受け入れ実績もあり</li>
-                    <li>テレビ取材や学会発表の機会も！</li>
-                </ul>
-                <div class="info-box">
-                    <p>新人さんには専任の先輩がつきます。基礎から丁寧に指導するので、未経験でも安心してスタートできます。</p>
-                </div>
-            </div>
+    <!-- 9: 魅力⑥ 福利厚生 -->
+    <section class="slide" aria-label="魅力：福利厚生">
+      <h2>🎉 魅力⑥ 福利厚生</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li>スタッフ誕生日会・食事会・院内イベント</li>
+          <li>年1回の周年記念イベント（旅行・ディナーなど）</li>
+          <li><span class="highlight">仕事もプライベートも楽しく！</span></li>
+        </ul>
+        <div class="info-box">
+          チームの絆を深めるイベントが充実。楽しい思い出もたくさん。
         </div>
+      </div>
+    </section>
 
-        <!-- スライド8: 魅力⑤ 患者層 -->
-        <div class="slide">
-            <h2>👨‍👩‍👧‍👦 魅力⑤ 患者層</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li>小児からご高齢の方まで幅広い患者様</li>
-                    <li>予防歯科・小児歯科・インプラントなど幅広い診療</li>
-                    <li><span class="highlight">衛生士業務をしっかり任せてもらえる環境</span></li>
-                </ul>
-                <div class="info-box">
-                    <p>多様な症例を経験できるので、スキルアップに最適です。やりがいを持って専門性を高められます。</p>
-                </div>
-            </div>
+    <!-- 10: 募集要項 -->
+    <section class="slide" aria-label="募集要項">
+      <h2>💼 募集要項</h2>
+      <div class="content">
+        <div class="feature-grid">
+          <div class="feature-card"><h4>💰 給与</h4><p>基本給：17万円〜</p></div>
+          <div class="feature-card"><h4>🚗 交通費</h4><p>支給（上限2万円）</p></div>
+          <div class="feature-card"><h4>📈 昇給・賞与</h4><p>昇給あり／賞与年2回</p></div>
+          <div class="feature-card"><h4>🏥 社会保険</h4><p>完備</p></div>
+          <div class="feature-card"><h4>📅 休日</h4><p>週休2日制／有給あり</p></div>
+          <div class="feature-card"><h4>⏰ 残業</h4><p><span class="highlight">ほぼゼロ！</span></p></div>
         </div>
+      </div>
+    </section>
 
-        <!-- スライド9: 魅力⑥ 福利厚生 -->
-        <div class="slide">
-            <h2>🎉 魅力⑥ 福利厚生</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li>スタッフ誕生日会・食事会・院内イベント</li>
-                    <li>年1回の周年記念イベント（旅行・ディナーなど）</li>
-                    <li><span class="highlight">仕事もプライベートも楽しく！</span></li>
-                </ul>
-                <div class="info-box">
-                    <p>チームの絆を深めるイベントが充実。仕事だけでなく、楽しい思い出もたくさん作れます。</p>
-                </div>
-            </div>
+    <!-- 11: 先輩の声 -->
+    <section class="slide" aria-label="先輩の声">
+      <h2>💬 先輩の声</h2>
+      <div class="content">
+        <div class="info-box"><span class="emoji">👩‍⚕️</span>「最初は不安でしたが、先輩がマンツーマンで支えてくれて安心でした」</div>
+        <div class="info-box"><span class="emoji">👩‍⚕️</span>「研修制度がしっかりしていて、自信を持って患者さん対応できるようになりました」</div>
+        <div class="info-box"><span class="emoji">👩‍⚕️</span>「スタッフみんな仲が良くて、毎日楽しく働いています」</div>
+      </div>
+    </section>
+
+    <!-- 12: よくある質問 -->
+    <section class="slide" aria-label="よくある質問">
+      <h2>❓ よくある質問</h2>
+      <div class="content">
+        <div class="qa-item"><strong>Q: 残業は？</strong><br>A: ほぼなし！定時退勤が基本です。</div>
+        <div class="qa-item"><strong>Q: 新人でも大丈夫？</strong><br>A: マンツーマン研修で安心してスタートできます。</div>
+        <div class="qa-item"><strong>Q: セミナー参加は？</strong><br>A: 医院が費用をサポートします。</div>
+        <div class="qa-item"><strong>Q: 産休・育休は？</strong><br>A: 実績あり、ママ社員も活躍中です。</div>
+      </div>
+    </section>
+
+    <!-- 13: まとめ -->
+    <section class="slide" aria-label="まとめ">
+      <h2>🌟 まとめ</h2>
+      <div class="content">
+        <ul class="bullet-list">
+          <li>仲間と協力し合える温かい雰囲気</li>
+          <li>学びながら成長できる環境</li>
+          <li>プライベートも大切にできる職場</li>
+        </ul>
+        <div class="special-box"><strong>一緒に「笑顔とやさしさ」を広げていきましょう！</strong></div>
+      </div>
+    </section>
+
+    <!-- 14: エンディング -->
+    <section class="slide" aria-label="お問い合わせ">
+      <h2>📞 お問い合わせ</h2>
+      <div class="content">
+        <div class="contact-box">
+          <h3>千束町 歯のクリニック</h3>
+          <p><strong>TEL：029-875-5130</strong></p>
+          <p style="margin-top: 10px;">見学も大歓迎！お気軽にお問い合わせください✨</p>
         </div>
+        <p style="text-align:center;margin:10px 0;">ご清聴ありがとうございました</p>
+      </div>
+    </section>
 
-        <!-- スライド10: 募集要項 -->
-        <div class="slide">
-            <h2>💼 募集要項</h2>
-            <div class="content">
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>💰 給与</h4>
-                        <p>基本給：17万円〜</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🚗 交通費</h4>
-                        <p>支給（上限2万円）</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📈 昇給・賞与</h4>
-                        <p>昇給あり<br>賞与年2回</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🏥 社会保険</h4>
-                        <p>完備</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>📅 休日</h4>
-                        <p>週休2日制<br>有給休暇あり</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>⏰ 残業</h4>
-                        <p><span class="highlight">ほぼゼロ！</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- ナビゲーション -->
+    <nav class="navigation" aria-label="スライドナビゲーション">
+      <button class="nav-btn" id="prevBtn" type="button">← 前へ</button>
+      <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
+      </div>
+      <button class="nav-btn" id="nextBtn" type="button">次へ →</button>
+    </nav>
+  </div>
 
-        <!-- スライド11: 先輩の声 -->
-        <div class="slide">
-            <h2>💬 先輩の声</h2>
-            <div class="content">
-                <div class="info-box">
-                    <p><span class="emoji">👩‍⚕️</span>「最初は不安でしたが、先輩がマンツーマンで支えてくれて安心でした」</p>
-                </div>
-                <div class="info-box">
-                    <p><span class="emoji">👩‍⚕️</span>「研修制度がしっかりしていて、自信を持って患者さん対応できるようになりました」</p>
-                </div>
-                <div class="info-box">
-                    <p><span class="emoji">👩‍⚕️</span>「スタッフみんな仲が良くて、毎日楽しく働いています」</p>
-                </div>
-            </div>
-        </div>
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const currentEl = document.getElementById('currentSlide');
+    const totalEl = document.getElementById('totalSlides');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    totalEl.textContent = totalSlides;
 
-        <!-- スライド12: よくある質問 -->
-        <div class="slide">
-            <h2>❓ よくある質問</h2>
-            <div class="content">
-                <div class="qa-item">
-                    <p><strong>Q: 残業は？</strong></p>
-                    <p>A: ほぼなし！定時退勤が基本です</p>
-                </div>
-                <div class="qa-item">
-                    <p><strong>Q: 新人でも大丈夫？</strong></p>
-                    <p>A: マンツーマン研修で安心してスタートできます</p>
-                </div>
-                <div class="qa-item">
-                    <p><strong>Q: セミナー参加は？</strong></p>
-                    <p>A: 医院が費用をサポートします</p>
-                </div>
-                <div class="qa-item">
-                    <p><strong>Q: 産休・育休は？</strong></p>
-                    <p>A: 実績あり、ママ社員も活躍中です</p>
-                </div>
-            </div>
-        </div>
+    function updateButtons(){
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === totalSlides - 1;
+      currentEl.textContent = currentSlide + 1;
+    }
+    function showSlide(n){
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + totalSlides) % totalSlides;
+      slides[currentSlide].classList.add('active');
+      // スクロール位置を先頭へ
+      slides[currentSlide].scrollTo?.({top:0, behavior:'instant'});
+      updateButtons();
+    }
+    function changeSlide(delta){ showSlide(currentSlide + delta); }
 
-        <!-- スライド13: まとめ -->
-        <div class="slide">
-            <h2>🌟 まとめ</h2>
-            <div class="content">
-                <ul class="bullet-list">
-                    <li>仲間と協力し合える温かい雰囲気</li>
-                    <li>学びながら成長できる環境</li>
-                    <li>プライベートも大切にできる職場</li>
-                </ul>
-                <div class="special-box">
-                    <p><strong>一緒に「笑顔とやさしさ」を広げていきましょう！</strong></p>
-                </div>
-            </div>
-        </div>
+    prevBtn.addEventListener('click', () => changeSlide(-1));
+    nextBtn.addEventListener('click', () => changeSlide(1));
 
-        <!-- スライド14: エンディング -->
-        <div class="slide">
-            <h2>📞 お問い合わせ</h2>
-            <div class="content">
-                <div class="contact-box">
-                    <h3>千束町 歯のクリニック</h3>
-                    <p><strong>TEL：029-875-5130</strong></p>
-                    <p style="margin-top: 30px; font-size: 1.5em;">見学も大歓迎！</p>
-                    <p style="font-size: 1.5em;">お気軽にお問い合わせください✨</p>
-                </div>
-                <div style="text-align: center; margin-top: 30px; font-size: 1.2em;">
-                    <p>ご清聴ありがとうございました</p>
-                </div>
-            </div>
-        </div>
+    // キーボード
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') changeSlide(-1);
+      if (e.key === 'ArrowRight') changeSlide(1);
+    });
 
-        <!-- ナビゲーション -->
-        <div class="navigation">
-            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← 前へ</button>
-            <div class="slide-counter">
-                <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
-            </div>
-            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">次へ →</button>
-        </div>
-    </div>
+    // スワイプ（iPhone向け）
+    let touchStartX = 0, touchEndX = 0;
+    let touchStartY = 0, touchEndY = 0;
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+    const deck = document.getElementById('deck');
+    deck.addEventListener('touchstart', (e) => {
+      const t = e.changedTouches[0];
+      touchStartX = t.clientX; touchStartY = t.clientY;
+    }, {passive:true});
+    deck.addEventListener('touchend', (e) => {
+      const t = e.changedTouches[0];
+      touchEndX = t.clientX; touchEndY = t.clientY;
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+      // 横スワイプ優先（縦スクロール誤検知防止）
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)){
+        if (dx < 0) changeSlide(1); else changeSlide(-1);
+      }
+    }, {passive:true});
 
-        document.getElementById('totalSlides').textContent = totalSlides;
-
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
-            slides[currentSlide].classList.add('active');
-            
-            document.getElementById('currentSlide').textContent = currentSlide + 1;
-            document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
-        }
-
-        function changeSlide(direction) {
-            showSlide(currentSlide + direction);
-        }
-
-        // キーボード操作
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
-        });
-
-        // 初期化
-        showSlide(0);
-    </script>
+    // 初期化
+    slides[0].classList.add('active');
+    updateButtons();
+  </script>
 </body>
 </html>
