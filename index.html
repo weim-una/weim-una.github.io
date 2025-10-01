@@ -251,30 +251,216 @@
             box-shadow: 0 10px 30px rgba(255,182,193,0.4);
         }
 
-        @media (max-width: 768px) {
+        /* タブレット対応 */
+        @media (max-width: 1024px) {
             .slide {
-                padding: 30px;
-                min-height: 500px;
+                padding: 50px;
             }
 
             .slide-cover h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
 
             .slide-cover .tagline {
-                font-size: 1.3em;
+                font-size: 1.7em;
+                padding: 15px 30px;
             }
 
             h2 {
+                font-size: 2.2em;
+            }
+
+            .bullet-list li {
+                font-size: 1.1em;
+            }
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 20px;
+            }
+
+            .slide {
+                padding: 30px 25px;
+                min-height: auto;
+            }
+
+            .slide-cover {
+                padding: 40px 20px;
+            }
+
+            .slide-cover h1 {
                 font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .slide-cover .tagline {
+                font-size: 1.2em;
+                padding: 15px 25px;
+                margin-bottom: 30px;
+            }
+
+            .slide-cover .greeting {
+                font-size: 1.1em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+            }
+
+            .content {
+                font-size: 1em;
+            }
+
+            .bullet-list li {
+                font-size: 1em;
+                padding: 12px 0 12px 35px;
+            }
+
+            .bullet-list li:before {
+                font-size: 1.3em;
+            }
+
+            .info-box {
+                padding: 20px;
+                font-size: 0.95em;
             }
 
             .feature-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .feature-card {
+                padding: 18px;
+            }
+
+            .feature-card h4 {
+                font-size: 1.2em;
+            }
+
+            .qa-item {
+                padding: 18px;
+                font-size: 0.95em;
+            }
+
+            .qa-item strong {
+                font-size: 1.1em;
+            }
+
+            .contact-box {
+                padding: 25px 20px;
+            }
+
+            .contact-box h3 {
+                font-size: 1.6em;
+            }
+
+            .contact-box p {
+                font-size: 1.1em;
+            }
+
+            .special-box {
+                padding: 25px 20px;
+                font-size: 1.1em;
+            }
+
+            .special-box h3 {
+                font-size: 1.6em !important;
             }
 
             .navigation {
-                padding: 15px 30px;
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .slide-counter {
+                font-size: 0.9em;
+                order: -1;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .emoji {
+                font-size: 1.3em;
+            }
+        }
+
+        /* 小型スマートフォン対応 */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 25px 20px;
+            }
+
+            .slide-cover h1 {
+                font-size: 1.5em;
+            }
+
+            .slide-cover .tagline {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+
+            .slide-cover .greeting {
+                font-size: 1em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            .bullet-list li {
+                font-size: 0.95em;
+                padding: 10px 0 10px 30px;
+            }
+
+            .feature-card {
+                padding: 15px;
+            }
+
+            .feature-card h4 {
+                font-size: 1.1em;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* 横向き表示の最適化 */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .slide {
+                min-height: auto;
+                padding: 30px;
+            }
+
+            .slide-cover {
+                padding: 30px;
+            }
+
+            .slide-cover h1 {
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+
+            .slide-cover .tagline {
+                font-size: 1.3em;
+                margin-bottom: 20px;
             }
         }
     </style>
