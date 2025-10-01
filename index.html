@@ -18,11 +18,6 @@
       --violet:#E0BBE4;
       --text:#4A4A4A;
       --accent:#D87093;
-      
-      /* iPhone画面サイズ変数 */
-      --iphone-se: 375px;
-      --iphone-std: 390px;
-      --iphone-plus: 428px;
       --safe-top: env(safe-area-inset-top, 20px);
       --safe-bottom: env(safe-area-inset-bottom, 34px);
     }
@@ -44,90 +39,64 @@
       font-family: 'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP', system-ui, -apple-system, sans-serif;
       background: var(--bg-grad);
       background-attachment: fixed;
-      display: flex;
-      justify-content: center;
-      padding: var(--safe-top) 12px calc(var(--safe-bottom) + 75px) 12px;
+      padding: var(--safe-top) 0 var(--safe-bottom) 0;
       color: var(--text);
-      min-height: 100vh;
-      min-height: 100dvh;
       line-height: 1.6;
       overscroll-behavior: none;
     }
 
     .container{
       width: 100%;
-      max-width: min(100vw - 24px, 420px);
+      max-width: 100vw;
       background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(255,182,193,0.25);
       overflow: hidden;
       position: relative;
     }
 
-    /* スライド共通：iPhone向け最適化 */
-    .slide{
-      display: none;
-      padding: 16px 20px 24px;
-      animation: slideIn .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      min-height: calc(100vh - var(--safe-top) - var(--safe-bottom) - 75px - 24px);
-      position: relative;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-    }
-    
-    .slide.active{ 
-      display: block; 
+    /* セクション共通スタイル */
+    .section{
+      padding: 24px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      width: 100%;
     }
 
-    @keyframes slideIn{
-      from{ opacity: 0; transform: translateX(20px); }
-      to{ opacity: 1; transform: translateX(0); }
-    }
-    
-    @media (prefers-reduced-motion: reduce){
-      .slide{ animation: none; }
+    .section:last-child{
+      border-bottom: none;
+      padding-bottom: calc(24px + var(--safe-bottom));
     }
 
-    /* iPhone SE (375px) 対応 */
+    /* iPhone SE対応 */
     @media (max-width: 375px) {
-      .container{
-        max-width: calc(100vw - 16px);
-        border-radius: 16px;
-      }
-      .slide{
-        padding: 14px 16px 20px;
+      .section{
+        padding: 20px 12px;
       }
     }
 
-    /* iPhone 14 Pro Max (428px) 対応 */
-    @media (min-width: 428px) {
-      .slide{
-        padding: 20px 24px 28px;
+    /* iPhone Plus以上 */
+    @media (min-width: 414px) {
+      .section{
+        padding: 28px 20px;
       }
     }
 
-    /* カバー */
-    .slide-cover{
+    /* カバーセクション */
+    .section-cover{
       background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #E0BBE4 100%);
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 16px;
-      align-items: center;
+      padding: calc(var(--safe-top) + 40px) 16px 40px;
+      border-bottom: none;
     }
     
-    .slide-cover h1{
-      font-size: clamp(24px, 7vw, 40px);
-      margin: 0;
+    .section-cover h1{
+      font-size: clamp(26px, 8vw, 42px);
+      margin: 0 0 16px;
       font-weight: 800;
       color: var(--hot);
       letter-spacing: .02em;
       line-height: 1.2;
     }
     
-    .slide-cover .tagline{
+    .section-cover .tagline{
       font-size: clamp(16px, 5vw, 24px);
       font-weight: 700;
       background: rgba(255,255,255,.85);
@@ -136,36 +105,37 @@
       color: var(--accent);
       display: inline-block;
       box-shadow: 0 4px 12px rgba(255,182,193,.2);
+      margin-bottom: 16px;
     }
     
-    .slide-cover .greeting{
+    .section-cover .greeting{
       font-size: clamp(15px, 4.5vw, 18px);
-      margin: 8px 0 0;
+      margin: 0;
       color: #fff;
       font-weight: 600;
     }
 
-    /* 見出し・本文：iPhone向けサイズ調整 */
+    /* 見出し */
     h2{
-      font-size: clamp(20px, 6vw, 28px);
+      font-size: clamp(22px, 6vw, 32px);
       color: var(--pink);
-      margin: 0 0 16px;
+      margin: 0 0 20px;
       border-bottom: 3px solid var(--pink-2);
-      padding-bottom: 8px;
+      padding-bottom: 10px;
       letter-spacing: .01em;
       font-weight: 700;
     }
     
     h3{
-      font-size: clamp(17px, 5vw, 22px);
+      font-size: clamp(18px, 5vw, 24px);
       color: var(--violet);
-      margin: 16px 0 8px;
+      margin: 20px 0 12px;
       font-weight: 600;
     }
     
     .content{
       font-size: clamp(15px, 4.2vw, 17px);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .highlight{
@@ -176,20 +146,20 @@
       border-radius: 2px;
     }
 
-    /* 箇条書き：タッチ操作向け調整 */
+    /* 箇条書き */
     .bullet-list{
       list-style: none;
-      margin: 16px 0;
+      margin: 20px 0;
       padding: 0;
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
     
     .bullet-list li{
       position: relative;
       padding-left: 32px;
-      font-size: clamp(14px, 4vw, 16px);
-      line-height: 1.6;
+      font-size: clamp(15px, 4.2vw, 17px);
+      line-height: 1.7;
     }
     
     .bullet-list li::before{
@@ -209,110 +179,115 @@
 
     .info-box{
       background: linear-gradient(135deg, #FFF5F7 0%, #F8E8EE 100%);
-      padding: 16px 18px;
-      border-radius: 14px;
-      margin-top: 16px;
+      padding: 20px;
+      border-radius: 16px;
+      margin-top: 20px;
       border-left: 4px solid var(--pink);
       box-shadow: 0 4px 12px rgba(255,182,193,.15);
-      font-size: clamp(14px, 4vw, 16px);
+      font-size: clamp(15px, 4.2vw, 17px);
+      line-height: 1.7;
     }
 
-    /* グリッド：iPhone向け1列レイアウト */
+    /* グリッドレイアウト */
     .feature-grid{
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 16px;
+      margin-top: 20px;
     }
     
-    /* iPhone Plus以上で2列 */
-    @media (min-width: 414px) and (orientation: portrait){
+    /* 幅に余裕がある場合は2列 */
+    @media (min-width: 480px) {
       .feature-grid{ 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
       }
     }
 
     .feature-card{
       background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
       border: 2px solid var(--pink-2);
-      padding: 14px 16px;
-      border-radius: 12px;
+      padding: 18px;
+      border-radius: 16px;
       box-shadow: 0 3px 10px rgba(255,182,193,.12);
       transition: transform .2s ease;
-      min-height: 80px;
+      min-height: 100px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
     
-    .feature-card:active{ 
-      transform: scale(.98); 
+    .feature-card:hover{
+      transform: translateY(-2px);
     }
     
     .feature-card h4{
       color: var(--hot);
-      font-size: clamp(15px, 4.5vw, 18px);
-      margin: 0 0 4px;
+      font-size: clamp(16px, 4.8vw, 20px);
+      margin: 0 0 8px;
       font-weight: 600;
     }
     
     .feature-card p{
       margin: 0;
-      font-size: clamp(13px, 3.8vw, 15px);
+      font-size: clamp(14px, 4vw, 16px);
       color: var(--text);
+      line-height: 1.5;
     }
 
     .qa-item{
       background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
-      padding: 16px 18px;
-      border-radius: 12px;
-      margin: 12px 0;
+      padding: 18px 20px;
+      border-radius: 14px;
+      margin: 16px 0;
       border-left: 4px solid var(--pink);
       box-shadow: 0 3px 8px rgba(255,182,193,.12);
-      font-size: clamp(14px, 4vw, 16px);
+      font-size: clamp(15px, 4.2vw, 17px);
+      line-height: 1.6;
     }
     
     .qa-item strong{
       color: var(--hot);
       font-size: 1em;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      font-weight: 700;
     }
 
     .special-box{
       background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
       color: #fff;
       text-align: center;
-      font-size: clamp(15px, 4.5vw, 18px);
-      margin-top: 20px;
-      padding: 18px 20px;
-      border-radius: 16px;
+      font-size: clamp(16px, 4.8vw, 20px);
+      margin-top: 24px;
+      padding: 20px 24px;
+      border-radius: 18px;
       box-shadow: 0 6px 20px rgba(255,182,193,.3);
       font-weight: 600;
+      line-height: 1.5;
     }
 
     .contact-box{
       background: linear-gradient(135deg, var(--pink) 0%, var(--violet) 100%);
       color: #fff;
-      padding: 20px 24px;
-      border-radius: 16px;
+      padding: 24px;
+      border-radius: 18px;
       text-align: center;
-      margin: 20px 0;
+      margin: 24px 0;
       box-shadow: 0 8px 24px rgba(255,182,193,.3);
     }
     
     .contact-box h3{
       color: #fff;
-      font-size: clamp(20px, 5.5vw, 26px);
-      margin: 0 0 12px;
+      font-size: clamp(22px, 6vw, 28px);
+      margin: 0 0 16px;
       font-weight: 700;
     }
     
     .contact-box p{
-      font-size: clamp(15px, 4.5vw, 18px);
-      margin: 8px 0;
-      line-height: 1.4;
+      font-size: clamp(16px, 4.8vw, 20px);
+      margin: 10px 0;
+      line-height: 1.5;
     }
 
     .emoji{ 
@@ -321,130 +296,139 @@
       display: inline-block;
     }
 
-    /* ナビ：iPhone向け最適化 */
-    .navigation{
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(100vw - 24px, 420px);
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px calc(12px + var(--safe-bottom));
-      background: linear-gradient(135deg, #FFF5F7 0%, #FFE8F0 100%);
-      border-top: 2px solid var(--pink-2);
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 -4px 16px rgba(255,182,193,.2);
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    /* iPhone SE向けナビ調整 */
-    @media (max-width: 375px){
-      .navigation{
-        width: calc(100vw - 16px);
-        padding: 10px 14px calc(10px + var(--safe-bottom));
-        gap: 8px;
-      }
-    }
-    
-    .nav-btn{
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
-      color: #fff;
+    /* セクション区切り線 */
+    .section-divider{
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink-2), var(--pink), var(--pink-2));
+      margin: 0;
       border: none;
-      padding: 14px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: clamp(15px, 4.2vw, 16px);
-      font-weight: 700;
-      transition: all .2s ease;
-      box-shadow: 0 4px 12px rgba(255,182,193,.25);
-      min-height: 48px;
-      min-width: 80px;
-      touch-action: manipulation;
-      user-select: none;
-      -webkit-user-select: none;
+      opacity: 0.6;
     }
-    
-    .nav-btn:active{ 
-      transform: scale(.95); 
-      box-shadow: 0 2px 8px rgba(255,182,193,.3);
+
+    /* スクロール位置インジケーター */
+    .scroll-indicator{
+      position: fixed;
+      top: var(--safe-top);
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,182,193,0.2);
+      z-index: 100;
     }
-    
-    .nav-btn:disabled{ 
-      opacity: .4; 
-      cursor: not-allowed; 
-      transform: none;
-    }
-    
-    .slide-counter{
-      text-align: center;
-      font-size: clamp(13px, 3.8vw, 14px);
-      color: var(--accent);
-      font-weight: 700;
-      min-width: 60px;
-      padding: 8px 12px;
-      background: rgba(255,255,255,.8);
-      border-radius: 20px;
-      border: 1px solid var(--pink-2);
+
+    .scroll-progress{
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--hot));
+      width: 0%;
+      transition: width 0.1s ease;
     }
 
     /* 横向き対応 */
     @media (orientation: landscape) and (max-height: 500px){
-      body{ 
-        padding: 8px 12px calc(var(--safe-bottom) + 65px) 12px; 
+      .section{
+        padding: 16px;
       }
-      .slide{
-        min-height: calc(100vh - var(--safe-bottom) - 65px - 16px);
-        padding: 12px 20px 16px;
+      .section-cover{
+        padding: calc(var(--safe-top) + 20px) 16px 20px;
       }
-      .navigation{ 
-        padding: 8px 16px calc(8px + var(--safe-bottom));
-      }
-      h2{ font-size: clamp(18px, 5.5vw, 24px); }
-      .slide-cover h1{ font-size: clamp(22px, 6.5vw, 32px); }
+      h2{ font-size: clamp(20px, 5.5vw, 26px); }
+      .section-cover h1{ font-size: clamp(24px, 6.5vw, 36px); }
     }
 
-    /* iPhone 14 Pro/Pro Max のDynamic Island対応 */
-    @media (min-width: 393px) {
-      :root{
-        --safe-top: max(env(safe-area-inset-top, 20px), 47px);
-      }
-    }
-
-    /* スクロールバー非表示（Safari向け） */
-    .slide::-webkit-scrollbar{
+    /* スクロールバー非表示（Webkit） */
+    body::-webkit-scrollbar{
       display: none;
     }
-    
-    /* フォーカス状態の改善 */
-    .nav-btn:focus{
-      outline: 3px solid rgba(255, 182, 193, 0.5);
-      outline-offset: 2px;
+
+    /* フェードイン効果 */
+    .section{
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
-    /* 読み込み状態の改善 */
-    @media (prefers-reduced-motion: no-preference) {
-      .slide{
-        will-change: transform, opacity;
+    @keyframes fadeInUp{
+      to{
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
+
+    /* セクションごとのアニメーション遅延 */
+    .section:nth-child(1) { animation-delay: 0s; }
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+    .section:nth-child(5) { animation-delay: 0.4s; }
+    .section:nth-child(6) { animation-delay: 0.5s; }
+    .section:nth-child(7) { animation-delay: 0.6s; }
+    .section:nth-child(8) { animation-delay: 0.7s; }
+    .section:nth-child(9) { animation-delay: 0.8s; }
+    .section:nth-child(10) { animation-delay: 0.9s; }
+    .section:nth-child(11) { animation-delay: 1s; }
+    .section:nth-child(12) { animation-delay: 1.1s; }
+    .section:nth-child(13) { animation-delay: 1.2s; }
+    .section:nth-child(14) { animation-delay: 1.3s; }
+
+    @media (prefers-reduced-motion: reduce){
+      .section{
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ページトップボタン */
+    .page-top{
+      position: fixed;
+      bottom: calc(20px + var(--safe-bottom));
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--pink), var(--hot));
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255,182,193,.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all .3s ease;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-top.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .page-top:active{
+      transform: scale(.95);
     }
   </style>
 </head>
 <body>
-  <div class="container" id="deck">
+  <!-- スクロールインジケーター -->
+  <div class="scroll-indicator">
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </div>
+
+  <div class="container">
     <!-- 1: 表紙 -->
-    <section class="slide slide-cover active" aria-label="表紙">
+    <section class="section section-cover">
       <h1>千束町 歯のクリニック</h1>
       <div class="tagline">「笑顔とやさしさを広げる」</div>
       <p class="greeting">学生のみなさん、こんにちは！</p>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 2: 医院紹介 -->
-    <section class="slide" aria-label="医院紹介">
+    <section class="section">
       <h2>🏥 医院紹介</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -458,8 +442,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 3: 私たちの理念 -->
-    <section class="slide" aria-label="私たちの理念">
+    <section class="section">
       <h2>💖 私たちの理念</h2>
       <div class="content">
         <div class="special-box"><strong>「笑顔とやさしさを広げる」</strong></div>
@@ -471,8 +457,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 4: 魅力① 人間関係 -->
-    <section class="slide" aria-label="魅力：人間関係">
+    <section class="section">
       <h2>✨ 魅力① 人間関係</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -486,8 +474,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 5: 魅力② 環境 -->
-    <section class="slide" aria-label="魅力：環境">
+    <section class="section">
       <h2>🏢 魅力② 環境</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -501,8 +491,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 6: 魅力③ 制服 -->
-    <section class="slide" aria-label="魅力：制服">
+    <section class="section">
       <h2>👗 魅力③ 制服</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -517,8 +509,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 7: 魅力④ 新人研修 -->
-    <section class="slide" aria-label="魅力：新人研修">
+    <section class="section">
       <h2>📚 魅力④ 新人研修</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -532,13 +526,15 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 8: 魅力⑤ 患者層 -->
-    <section class="slide" aria-label="魅力：患者層">
+    <section class="section">
       <h2>👨‍👩‍👧‍👦 魅力⑤ 患者層</h2>
       <div class="content">
         <ul class="bullet-list">
           <li>小児からご高齢の方まで幅広い患者様</li>
-          <li>一般から矯正・外科治療まで、トータルにサポート</li>
+          <li>予防歯科・小児歯科・インプラントなど幅広い診療</li>
           <li><span class="highlight">衛生士業務をしっかり任せてもらえる環境</span></li>
         </ul>
         <div class="info-box">
@@ -547,8 +543,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 9: 魅力⑥ 福利厚生 -->
-    <section class="slide" aria-label="魅力：福利厚生">
+    <section class="section">
       <h2>🎉 魅力⑥ 福利厚生</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -562,8 +560,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 10: 募集要項 -->
-    <section class="slide" aria-label="募集要項">
+    <section class="section">
       <h2>💼 募集要項</h2>
       <div class="content">
         <div class="feature-grid">
@@ -577,8 +577,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 11: 先輩の声 -->
-    <section class="slide" aria-label="先輩の声">
+    <section class="section">
       <h2>💬 先輩の声</h2>
       <div class="content">
         <div class="info-box"><span class="emoji">👩‍⚕️</span>「最初は不安でしたが、先輩がマンツーマンで支えてくれて安心でした」</div>
@@ -587,8 +589,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 12: よくある質問 -->
-    <section class="slide" aria-label="よくある質問">
+    <section class="section">
       <h2>❓ よくある質問</h2>
       <div class="content">
         <div class="qa-item"><strong>Q: 残業は？</strong><br>A: ほぼなし！定時退勤が基本です。</div>
@@ -598,8 +602,10 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 13: まとめ -->
-    <section class="slide" aria-label="まとめ">
+    <section class="section">
       <h2>🌟 まとめ</h2>
       <div class="content">
         <ul class="bullet-list">
@@ -611,208 +617,79 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
     <!-- 14: エンディング -->
-    <section class="slide" aria-label="お問い合わせ">
+    <section class="section">
       <h2>📞 お問い合わせ</h2>
       <div class="content">
         <div class="contact-box">
           <h3>千束町 歯のクリニック</h3>
           <p><strong>TEL：029-875-5130</strong></p>
-          <p style="margin-top: 10px;">見学も大歓迎！お気軽にお問い合わせください✨</p>
+          <p style="margin-top: 16px;">見学も大歓迎！お気軽にお問い合わせください✨</p>
         </div>
-        <p style="text-align:center;margin:10px 0;">ご清聴ありがとうございました</p>
+        <p style="text-align:center;margin:16px 0;">ご清聴ありがとうございました</p>
       </div>
     </section>
-
-    <!-- ナビゲーション -->
-    <nav class="navigation" aria-label="スライドナビゲーション">
-      <button class="nav-btn" id="prevBtn" type="button" aria-label="前のスライド">← 前へ</button>
-      <div class="slide-counter" aria-live="polite">
-        <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
-      </div>
-      <button class="nav-btn" id="nextBtn" type="button" aria-label="次のスライド">次へ →</button>
-    </nav>
   </div>
 
+  <!-- ページトップボタン -->
+  <button class="page-top" id="pageTop" aria-label="ページトップへ戻る">↑</button>
+
   <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const currentEl = document.getElementById('currentSlide');
-    const totalEl = document.getElementById('totalSlides');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const deck = document.getElementById('deck');
-    
-    totalEl.textContent = totalSlides;
+    // スクロール進捗インジケーター
+    const scrollProgress = document.getElementById('scrollProgress');
+    const pageTop = document.getElementById('pageTop');
 
-    // パフォーマンス最適化のための変数
-    let isTransitioning = false;
-    let rafId = null;
-
-    function updateButtons(){
-      prevBtn.disabled = currentSlide === 0;
-      nextBtn.disabled = currentSlide === totalSlides - 1;
-      currentEl.textContent = currentSlide + 1;
+    function updateScrollProgress() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      scrollProgress.style.width = scrolled + '%';
       
-      // ARIA属性更新
-      prevBtn.setAttribute('aria-disabled', currentSlide === 0);
-      nextBtn.setAttribute('aria-disabled', currentSlide === totalSlides - 1);
-    }
-
-    function showSlide(n){
-      if (isTransitioning) return;
-      
-      isTransitioning = true;
-      const oldSlide = slides[currentSlide];
-      
-      currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
-      const newSlide = slides[currentSlide];
-      
-      // スライド切り替え
-      oldSlide.classList.remove('active');
-      newSlide.classList.add('active');
-      
-      // スクロール位置リセット
-      if (newSlide.scrollTo) {
-        newSlide.scrollTo({top: 0, behavior: 'instant'});
+      // ページトップボタンの表示制御
+      if (winScroll > 300) {
+        pageTop.classList.add('visible');
       } else {
-        newSlide.scrollTop = 0;
-      }
-      
-      updateButtons();
-      
-      // アニメーション完了後にフラグリセット
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 300);
-    }
-
-    function changeSlide(delta){ 
-      if (!isTransitioning) {
-        showSlide(currentSlide + delta); 
+        pageTop.classList.remove('visible');
       }
     }
 
-    // ボタンイベント
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      changeSlide(-1);
-    });
-    
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      changeSlide(1);
-    });
-
-    // キーボードナビゲーション
-    document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      
-      switch(e.key) {
-        case 'ArrowLeft':
-        case 'ArrowUp':
-          e.preventDefault();
-          changeSlide(-1);
-          break;
-        case 'ArrowRight':
-        case 'ArrowDown':
-        case ' ':
-          e.preventDefault();
-          changeSlide(1);
-          break;
-        case 'Home':
-          e.preventDefault();
-          showSlide(0);
-          break;
-        case 'End':
-          e.preventDefault();
-          showSlide(totalSlides - 1);
-          break;
+    // スクロールイベント（パフォーマンス最適化）
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
       }
-    });
+      scrollTimeout = setTimeout(updateScrollProgress, 10);
+    }, { passive: true });
 
-    // スワイプ操作（改善版）
-    let touchStartX = 0, touchStartY = 0;
-    let touchEndX = 0, touchEndY = 0;
-    let touchStartTime = 0;
-    const SWIPE_THRESHOLD = 50;
-    const SWIPE_VELOCITY_THRESHOLD = 0.3;
-
-    deck.addEventListener('touchstart', (e) => {
-      const touch = e.changedTouches[0];
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
-      touchStartTime = Date.now();
-    }, {passive: true});
-
-    deck.addEventListener('touchend', (e) => {
-      if (isTransitioning) return;
-      
-      const touch = e.changedTouches[0];
-      touchEndX = touch.clientX;
-      touchEndY = touch.clientY;
-      
-      const deltaX = touchEndX - touchStartX;
-      const deltaY = touchEndY - touchStartY;
-      const deltaTime = Date.now() - touchStartTime;
-      const velocity = Math.abs(deltaX) / deltaTime;
-      
-      // 横方向のスワイプかチェック
-      if (Math.abs(deltaX) > Math.abs(deltaY) && 
-          (Math.abs(deltaX) > SWIPE_THRESHOLD || velocity > SWIPE_VELOCITY_THRESHOLD)) {
-        
-        e.preventDefault();
-        
-        if (deltaX > 0) {
-          changeSlide(-1); // 右スワイプ：前へ
-        } else {
-          changeSlide(1);  // 左スワイプ：次へ
-        }
-      }
-    }, {passive: false});
-
-    // リサイズ対応
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        // 現在のスライドのスクロール位置をリセット
-        const currentSlideEl = slides[currentSlide];
-        if (currentSlideEl && currentSlideEl.scrollTo) {
-          currentSlideEl.scrollTo({top: 0, behavior: 'instant'});
-        }
-      }, 150);
-    });
-
-    // 初期化
-    slides[0].classList.add('active');
-    updateButtons();
-
-    // ページ読み込み時の最適化
-    window.addEventListener('load', () => {
-      // Safariでのバウンススクロール無効化
-      document.body.style.overscrollBehavior = 'none';
-      
-      // iOS Safariでのビューポートの高さの問題を修正
-      const setVH = () => {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      };
-      
-      setVH();
-      window.addEventListener('resize', setVH);
-      window.addEventListener('orientationchange', () => {
-        setTimeout(setVH, 100);
+    // ページトップボタン
+    pageTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
 
-    // デバッグ用（開発時のみ）
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      console.log('iPhone最適化版 - デバッグモード');
-      console.log(`画面サイズ: ${window.innerWidth}x${window.innerHeight}`);
-      console.log(`Safe area: top=${getComputedStyle(document.documentElement).getPropertyValue('--safe-top')}, bottom=${getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')}`);
-    }
+    // 初期化
+    updateScrollProgress();
+
+    // iOS Safariでのビューポート高さ調整
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(setVH, 100);
+    });
+
+    // パフォーマンス最適化
+    document.body.style.overscrollBehavior = 'none';
   </script>
 </body>
 </html>
