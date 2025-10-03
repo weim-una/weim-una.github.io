@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>千束町 歯のクリニック ガイダンス</title>
+  <title>千束町歯のクリニック｜学生ガイダンス</title>
   <style>
     /* base.css */
     :root {
@@ -37,12 +37,14 @@
       border-bottom: 3px solid var(--pink-2);
     }
     
-    .section:last-child {
-      border-bottom: none;
-    }
-    
-    .section:first-child {
-      padding: clamp(50px,8vw,100px) clamp(30px,5vw,60px);
+    .section:last-child { border-bottom: none; }
+    .section:first-child { padding: clamp(50px,8vw,100px) clamp(30px,5vw,60px); }
+
+    /* ★ 追加：画像のデフォルト挙動（横幅フィット） */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* theme.css */
@@ -88,11 +90,9 @@
       background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
       color:#fff; text-align:center; margin-top:16px; padding: clamp(16px,4vw,28px); border-radius:20px;
     }
-    .special-box strong { 
-      font-size: clamp(16px,4.5vw,22px); 
-      display: block;
-    }
+    .special-box strong { font-size: clamp(16px,4.5vw,22px); display: block; }
     .special-box p { margin: 8px 0; }
+
     .contact-box {
       background: linear-gradient(135deg, var(--pink) 0%, var(--violet) 100%);
       color:#fff; padding: clamp(16px,4.5vw,30px); border-radius:20px; text-align:center; margin:16px 0;
@@ -101,31 +101,35 @@
     .contact-box p { margin: 6px 0; }
     
     .video-placeholder {
-      width:100%; 
-      aspect-ratio:16/9; 
-      border-radius:12px; 
-      margin-top:10px;
+      width:100%; aspect-ratio:16/9; border-radius:12px; margin-top:10px;
       background: linear-gradient(135deg, #FFE8F0 0%, #E8F5FF 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-weight: 600;
-      border: 2px dashed var(--pink-2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-weight: 600; border: 2px dashed var(--pink-2);
     }
     
     .image-placeholder {
       width: 100%;
+      /* ★ 画像枠は比率固定＋オーバーフロー隠す */
       aspect-ratio: 16/9;
       border-radius: 12px;
       margin-top: 16px;
       background: linear-gradient(135deg, #FFE8F0 0%, #E8F5FF 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-weight: 600;
+      position: relative;            /* ★ 追加 */
+      overflow: hidden;              /* ★ 追加：はみ出し防止 */
       border: 2px dashed var(--pink-2);
+      display: block;                /* ★ 追加 */
+    }
+
+    /* ★ 追加：枠内の画像を幅いっぱい＆高さもフィット（トリミングは中央） */
+    .image-placeholder > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;             /* 余白や歪みなくフィット */
+      object-position: center;
+      border-radius: inherit;
+      display: block;
     }
 
     /* responsive.css */
@@ -137,9 +141,13 @@
       body { padding: 8px; }
       .section { padding: 24px 16px; }
       .feature-grid { grid-template-columns: 1fr; }
+      /* ★ スマホでは表紙の画像を少し縦長にして見やすく */
+      .section-cover .image-placeholder { aspect-ratio: 4/3; }
     }
     @media (max-width: 480px) {
       h2 { font-size: 1.4em; }
+      /* ★ さらに小さい端末は1:1.2くらいで収まり良く */
+      .section-cover .image-placeholder { aspect-ratio: 1/1; }
     }
   </style>
 </head>
@@ -150,9 +158,12 @@
     <section class="section section-cover">
       <h1>千束町 歯のクリニック</h1>
       <div class="tagline">「笑顔とやさしさを広げる」</div>
+
+      <!-- ★ ここはそのまま。CSSが画像を枠いっぱいにフィットさせます -->
       <div class="image-placeholder">
-        <img src="" alt="">
+        <img src="img/IMG_0614.JPG" alt="院内写真" loading="lazy" decoding="async">
       </div>
+
       <p class="greeting">学生のみなさん、こんにちは！</p>
     </section>
 
@@ -210,20 +221,24 @@
         <li>先輩がそばでフォローするので安心</li>
         <li>実践的なスキルをしっかり身につけられる</li>
       </ul>
+      <div class="image-placeholder">
+        <img src="img/IMG_0616.JPG" alt="研修風景1" loading="lazy" decoding="async">
+      </div>
+      <div class="image-placeholder">
+        <img src="img/IMG_0624.JPG" alt="研修風景2" loading="lazy" decoding="async">
+      </div>
     </section>
 
     <!-- 一日のタイムスケジュール -->
     <section class="section">
       <h2>⏱ 一日のタイムスケジュール</h2>
-      <div class="video-placeholder">
-        📹 タイムスケジュール動画
-      </div>
+      <div class="video-placeholder">📹 タイムスケジュール動画</div>
       <div class="info-box">
         <strong>〈平日〉</strong>9:00〜18:30（昼休み14:00〜15:30）<br>
         <strong>〈土日祝〉</strong>8:30〜17:00（昼休み14:00〜15:00）
       </div>
       <div class="image-placeholder">
-        🖼️ 治療している様子
+        <img src="img/20220921_56.JPG" alt="医院の外観" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -231,14 +246,8 @@
     <section class="section">
       <h2>💼 募集要項（仮）</h2>
       <div class="feature-grid">
-        <div class="feature-card">
-          <h4>基本給</h4>
-          <p>170,000円</p>
-        </div>
-        <div class="feature-card">
-          <h4>衛生士手当</h4>
-          <p>65,000円</p>
-        </div>
+        <div class="feature-card"><h4>基本給</h4><p>170,000円</p></div>
+        <div class="feature-card"><h4>衛生士手当</h4><p>65,000円</p></div>
       </div>
       <div class="info-box">※内容は確定前のため変更の可能性あり</div>
     </section>
