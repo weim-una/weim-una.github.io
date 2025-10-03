@@ -5,25 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>千束町歯のクリニック｜学生ガイダンス</title>
   <style>
-    /* base.css */
     :root {
       --bg-grad: linear-gradient(135deg, #FFE5E5 0%, #FFF0F5 50%, #E8F5FF 100%);
       --pink: #FFB6C1; --pink-2:#FFD4E5; --hot:#FF69B4; --violet:#E0BBE4;
       --text:#4A4A4A; --accent:#D87093;
     }
-
     * { box-sizing: border-box; }
-    html, body { height: 100%; margin:0; padding:0; }
+    html, body { margin:0; padding:0; }
     body {
-      -webkit-text-size-adjust: 100%;
       font-family: 'Hiragino Sans','Noto Sans JP', system-ui, sans-serif;
       background: var(--bg-grad);
-      display: flex; justify-content: center;
-      padding: 20px 16px 20px 16px;
-      color: var(--text); line-height: 1.65;
-      min-height: 100vh;
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-text-size-adjust: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 16px;
     }
-
     .container {
       width: min(100%, 920px);
       background: #fff;
@@ -31,123 +29,46 @@
       box-shadow: 0 16px 48px rgba(255,182,193,0.28);
       margin: 20px 0;
     }
-    
-    .section { 
-      padding: clamp(40px,6vw,80px) clamp(30px,5vw,60px); 
+    .section {
+      padding: clamp(40px,6vw,80px) clamp(30px,5vw,60px);
       border-bottom: 3px solid var(--pink-2);
     }
-    
     .section:last-child { border-bottom: none; }
-    .section:first-child { padding: clamp(50px,8vw,100px) clamp(30px,5vw,60px); }
-
-    /* ★ 追加：画像のデフォルト挙動（横幅フィット） */
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* theme.css */
-    .section-cover {
-      background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #E0BBE4 100%);
-      text-align:center; display:flex; flex-direction:column; justify-content:center; gap:20px;
-      min-height: 500px;
-    }
-    .section-cover h1 { font-size: clamp(22px,6vw,48px); margin:0; font-weight:800; color:var(--hot); }
-    .section-cover .tagline {
-      font-size: clamp(16px,4.5vw,28px); font-weight:700;
-      background: rgba(255,255,255,.75); padding:12px 18px; border-radius:999px; color:var(--accent);
-      display: inline-block; margin: 0 auto;
-    }
-    .section-cover .greeting { font-size: clamp(14px,4vw,20px); }
-
     h2 {
-      font-size: clamp(20px,5.2vw,38px);
-      color: var(--pink); margin:0 0 24px;
-      border-bottom:3px solid var(--pink-2); padding-bottom:12px;
+      font-size: clamp(20px,5.2vw,32px);
+      color: var(--pink);
+      margin-bottom: 20px;
+      border-bottom:3px solid var(--pink-2);
+      padding-bottom: 10px;
     }
-    .content { font-size: clamp(14px,4vw,18px); }
-    .bullet-list { list-style:none; margin:12px 0; padding:0; display:grid; gap:10px; }
-    .bullet-list li { position:relative; padding-left:28px; }
-    .bullet-list li::before { content:"✓"; position:absolute; left:0; top:0; color:var(--pink); font-weight: bold; }
-
-    .highlight { color: var(--hot); font-weight: 600; }
-
-    .info-box {
-      background: linear-gradient(135deg, #FFF5F7 0%, #F8E8EE 100%);
-      padding: clamp(12px,3.5vw,24px); border-radius:16px; margin-top:12px;
-      border-left:5px solid var(--pink);
-    }
-    .feature-grid { display:grid; gap:12px; margin-top:10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-    .feature-card {
-      background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
-      border:2px solid var(--pink-2); padding: clamp(12px,3.2vw,20px); border-radius:16px;
-    }
-    .feature-card h4 { color:var(--hot); margin:0 0 6px; font-size: clamp(16px,4vw,20px); }
-    .feature-card p { margin: 0; font-size: clamp(14px,3.5vw,18px); }
-
+    .bullet-list { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+    .bullet-list li { position:relative; padding-left:26px; }
+    .bullet-list li::before { content:"✓"; position:absolute; left:0; color: var(--pink); font-weight: bold; }
     .special-box {
       background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
-      color:#fff; text-align:center; margin-top:16px; padding: clamp(16px,4vw,28px); border-radius:20px;
+      color:#fff; text-align:center; padding:20px; border-radius:20px; margin-bottom:20px;
     }
-    .special-box strong { font-size: clamp(16px,4.5vw,22px); display: block; }
-    .special-box p { margin: 8px 0; }
-
+    .info-box {
+      background: linear-gradient(135deg, #FFF5F7 0%, #F8E8EE 100%);
+      padding: 16px; border-radius:16px; border-left:5px solid var(--pink); margin-top:16px;
+    }
+    .feature-grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); }
+    .feature-card { background:#fff9fb; border:2px solid var(--pink-2); border-radius:16px; padding:16px; }
+    .feature-card h4 { margin:0 0 6px; color: var(--hot); }
     .contact-box {
       background: linear-gradient(135deg, var(--pink) 0%, var(--violet) 100%);
-      color:#fff; padding: clamp(16px,4.5vw,30px); border-radius:20px; text-align:center; margin:16px 0;
+      color:#fff; padding: 20px; border-radius:20px; text-align:center; margin-top:20px;
     }
-    .contact-box h3 { margin: 0 0 12px; font-size: clamp(16px,4vw,22px); }
-    .contact-box p { margin: 6px 0; }
-    
     .video-placeholder {
-      width:100%; aspect-ratio:16/9; border-radius:12px; margin-top:10px;
-      background: linear-gradient(135deg, #FFE8F0 0%, #E8F5FF 100%);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent); font-weight: 600; border: 2px dashed var(--pink-2);
+      width:100%; aspect-ratio:16/9; background:#fce9f2; border:2px dashed var(--pink-2);
+      display:flex; align-items:center; justify-content:center; border-radius:12px; margin-bottom:12px;
     }
-    
     .image-placeholder {
-      width: 100%;
-      /* ★ 画像枠は比率固定＋オーバーフロー隠す */
-      aspect-ratio: 16/9;
-      border-radius: 12px;
-      margin-top: 16px;
-      background: linear-gradient(135deg, #FFE8F0 0%, #E8F5FF 100%);
-      position: relative;            /* ★ 追加 */
-      overflow: hidden;              /* ★ 追加：はみ出し防止 */
-      border: 2px dashed var(--pink-2);
-      display: block;                /* ★ 追加 */
+      width:100%; aspect-ratio:16/9; border-radius:12px; margin-top:16px;
+      background:#fce9f2; border:2px dashed var(--pink-2); overflow:hidden; position:relative;
     }
-
-    /* ★ 追加：枠内の画像を幅いっぱい＆高さもフィット（トリミングは中央） */
-    .image-placeholder > img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;             /* 余白や歪みなくフィット */
-      object-position: center;
-      border-radius: inherit;
-      display: block;
-    }
-
-    /* responsive.css */
-    @media (max-width: 1024px) {
-      h2 { font-size: 2em; }
-      .section { padding: 40px; }
-    }
-    @media (max-width: 768px) {
-      body { padding: 8px; }
-      .section { padding: 24px 16px; }
-      .feature-grid { grid-template-columns: 1fr; }
-      /* ★ スマホでは表紙の画像を少し縦長にして見やすく */
-      .section-cover .image-placeholder { aspect-ratio: 4/3; }
-    }
-    @media (max-width: 480px) {
-      h2 { font-size: 1.4em; }
-      /* ★ さらに小さい端末は1:1.2くらいで収まり良く */
-      .section-cover .image-placeholder { aspect-ratio: 1/1; }
+    .image-placeholder img {
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     }
   </style>
 </head>
@@ -155,52 +76,43 @@
   <div class="container">
 
     <!-- 表紙 -->
-    <section class="section section-cover">
-      <h1>千束町 歯のクリニック</h1>
-      <div class="tagline">「笑顔とやさしさを広げる」</div>
-
-      <!-- ★ ここはそのまま。CSSが画像を枠いっぱいにフィットさせます -->
+    <section class="section section-cover" style="text-align:center;">
+      <h1 style="color:var(--hot); font-size:clamp(24px,6vw,42px);">千束町 歯のクリニック</h1>
+      <div class="special-box"><strong>「笑顔とやさしさを広げる」</strong></div>
       <div class="image-placeholder">
-        <img src="img/IMG_0614.JPG" alt="院内写真" loading="lazy" decoding="async">
+        <img src="img/clinic.jpg" alt="院内写真">
       </div>
-
-      <p class="greeting">学生のみなさん、こんにちは！</p>
+      <p>学生のみなさん、こんにちは！</p>
     </section>
 
     <!-- 理念 -->
     <section class="section">
       <h2>💖 理念</h2>
-      <div class="content">
-        <div class="special-box"><strong>『関わる全ての方を幸せに』</strong></div>
-        <ul class="bullet-list">
-          <li>患者様を笑顔にし、健康を守る</li>
-          <li>技術や知識を身につけて患者様に還元する</li>
-          <li>一人ひとりの成長を応援し合い、互いに学びながら輝ける衛生士に✨</li>
-        </ul>
-      </div>
+      <div class="special-box"><strong>『関わる全ての方を幸せに』</strong></div>
+      <ul class="bullet-list">
+        <li>患者様を笑顔にし、健康を守る</li>
+        <li>学んだ技術や知識を患者様へ還元する</li>
+        <li>お互いに成長を応援し合い、輝ける衛生士に✨</li>
+      </ul>
     </section>
 
     <!-- 魅力① -->
     <section class="section">
-      <h2>✨ 魅力① 働きやすい環境</h2>
+      <h2>✨ 魅力① 人間関係</h2>
       <ul class="bullet-list">
-        <li><span class="highlight">院長が優しい！</span></li>
+        <li><strong>院長が優しい！</strong></li>
         <li>怖い先輩・上司はいません</li>
-        <li>スタッフみんな仲良し＆協力し合える雰囲気</li>
-        <li>残業ほぼなし！定時で帰れる職場</li>
-        <li>有給休暇も取りやすい雰囲気</li>
-        <li>産休・育休実績あり。長く働ける環境</li>
+        <li>スタッフは仲良く、協力し合う雰囲気</li>
       </ul>
     </section>
 
     <!-- 魅力② -->
     <section class="section">
-      <h2>🌱 魅力② 成長をサポート</h2>
+      <h2>🏢 魅力② 環境</h2>
       <ul class="bullet-list">
-        <li>充実した研修制度で、新人さんも安心</li>
-        <li>先輩衛生士がマンツーマンでフォロー</li>
-        <li>セミナー参加費の補助あり</li>
-        <li>最新の設備と技術を学べる環境</li>
+        <li>2020年オープンの新しく清潔な医院</li>
+        <li>最新設備を導入し、効率的に働ける</li>
+        <li>石膏や注油も自動化 → 仕事がスムーズ</li>
       </ul>
     </section>
 
@@ -208,8 +120,8 @@
     <section class="section">
       <h2>👗 魅力③ 制服</h2>
       <ul class="bullet-list">
-        <li><span class="highlight">ジェラートピケ、ロンハーマン</span> などのスクラブ（全6種類）</li>
-        <li>カーディガン、ヒートテックなども支給</li>
+        <li>ジェラートピケ、ロンハーマンなどのスクラブ（全6種類）</li>
+        <li>カーディガンやヒートテックも支給</li>
         <li>可愛い制服で毎日の出勤が楽しみ</li>
       </ul>
     </section>
@@ -218,30 +130,34 @@
     <section class="section">
       <h2>📚 魅力④ 新人研修</h2>
       <ul class="bullet-list">
-        <li>入社後、丁寧な研修プログラムでサポート</li>
-        <li>基礎から応用まで、段階的に学べる環境</li>
-        <li>先輩がそばでフォローするので安心</li>
-        <li>実践的なスキルをしっかり身につけられる</li>
+        <li>安心の研修システム（マニュアル完備）</li>
+        <li>先輩がマンツーマンで丁寧に指導</li>
+        <li>外部講師（テレビ出演・論文実績あり）の授業で最新知識を学べる</li>
       </ul>
-      <div class="image-placeholder">
-        <img src="img/IMG_0616.JPG" alt="研修風景1" loading="lazy" decoding="async">
-      </div>
-      <div class="image-placeholder">
-        <img src="img/IMG_0624.JPG" alt="研修風景2" loading="lazy" decoding="async">
+      <div class="info-box">
+        <p>例）上間京子先生（Jokanスクール主任DH）、大澤愛先生（歯周病学会認定DH）</p>
       </div>
     </section>
 
-    <!-- 一日のタイムスケジュール -->
+    <!-- スケジュール -->
     <section class="section">
       <h2>⏱ 一日のタイムスケジュール</h2>
       <div class="video-placeholder">📹 タイムスケジュール動画</div>
       <div class="info-box">
-        <strong>〈平日〉</strong>9:00〜18:30（昼休み14:00〜15:30）<br>
-        <strong>〈土日祝〉</strong>8:30〜17:00（昼休み14:00〜15:00）
+        <p><strong>平日：</strong> 9:00〜18:30（昼休み 14:00〜15:30）<br>
+        <strong>土日祝：</strong> 8:30〜17:00（昼休み 14:00〜15:00）</p>
       </div>
-      <div class="image-placeholder">
-        <img src="img/20220921_56.JPG" alt="医院の外観" loading="lazy" decoding="async">
-      </div>
+    </section>
+
+    <!-- 年間 -->
+    <section class="section">
+      <h2>📅 新卒の年間スケジュール（例）</h2>
+      <ul class="bullet-list">
+        <li>4〜6月：医院の流れを覚え、アシスタント中心</li>
+        <li>7〜9月：小児P処デビュー、検査・スケーリング練習</li>
+        <li>10〜1月：大人のスケーリングデビュー</li>
+        <li>2〜4月：SRP練習</li>
+      </ul>
     </section>
 
     <!-- 募集要項 -->
@@ -251,10 +167,10 @@
         <div class="feature-card"><h4>基本給</h4><p>170,000円</p></div>
         <div class="feature-card"><h4>衛生士手当</h4><p>65,000円</p></div>
       </div>
-      <div class="info-box">※内容は確定前のため変更の可能性あり</div>
+      <div class="info-box">※内容は変更になる可能性があります</div>
     </section>
 
-    <!-- 見学・アルバイト案内 -->
+    <!-- 見学案内 -->
     <section class="section">
       <h2>🌟 最後に</h2>
       <div class="special-box">
@@ -263,7 +179,7 @@
         <p>アルバイトも歓迎（時給1,100円／学校と両立OK）</p>
       </div>
       <div class="contact-box">
-        <h3>見学のお申込み・お問い合わせ</h3>
+        <h3>見学・お問い合わせ</h3>
         <p><strong>TEL：029-875-5130</strong></p>
         <p>千束町 歯のクリニック</p>
       </div>
