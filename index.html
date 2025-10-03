@@ -4,140 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>千束町 歯のクリニック ガイダンス</title>
-  <style>
-    :root{
-      --bg-grad: linear-gradient(135deg, #FFE5E5 0%, #FFF0F5 50%, #E8F5FF 100%);
-      --pink: #FFB6C1; --pink-2:#FFD4E5; --hot:#FF69B4; --violet:#E0BBE4;
-      --text:#4A4A4A; --accent:#D87093;
-    }
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
-    body{
-      margin: 0; -webkit-text-size-adjust: 100%;
-      font-family: 'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP', system-ui, -apple-system, sans-serif;
-      background: var(--bg-grad);
-      display: flex; justify-content: center;
-      padding: env(safe-area-inset-top) 16px calc(env(safe-area-inset-bottom) + 80px) 16px;
-      color: var(--text); min-height: 100dvh; line-height: 1.65;
-    }
-    .container{ width: min(100%, 920px); background: #fff; border-radius: 24px;
-      box-shadow: 0 16px 48px rgba(255,182,193,0.28); overflow: clip; }
-    .slide{ display:none; padding: clamp(20px,4vw,60px); animation: fadeIn .35s ease-in; }
-    .slide.active{ display:block; }
-    @keyframes fadeIn{ from{opacity:0; transform: translateY(8px)} to{opacity:1; transform: translateY(0)} }
-    @media (prefers-reduced-motion: reduce){ .slide{ animation:none } }
-
-    .slide-cover{
-      background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #E0BBE4 100%);
-      text-align:center; display:flex; flex-direction:column; justify-content:center; gap:14px;
-    }
-    .slide-cover h1{ font-size: clamp(22px,6vw,48px); margin:0 0 6px; font-weight:800; color:var(--hot); letter-spacing:.02em; }
-    .slide-cover .tagline{
-      font-size: clamp(16px,4.5vw,28px); font-weight:700; background: rgba(255,255,255,.75);
-      padding:12px 18px; border-radius:999px; color:var(--accent); display:inline-block; margin-inline:auto;
-    }
-    .slide-cover .greeting{ font-size: clamp(14px,4vw,20px); }
-
-    h2{ font-size: clamp(18px,5.2vw,36px); color: var(--pink);
-      margin:0 0 14px; border-bottom:3px solid var(--pink-2); padding-bottom:10px; letter-spacing:.01em; }
-    h3{ font-size: clamp(16px,4.5vw,24px); color: var(--violet); margin:18px 0 10px; }
-    .content{ font-size: clamp(14px,4vw,18px); }
-
-    .highlight{ background: linear-gradient(transparent 62%, #FFDAB9 62%); font-weight:700; padding:0 2px; color:var(--accent); }
-
-    .bullet-list{ list-style:none; margin:12px 0; padding:0; display:grid; gap:10px; }
-    .bullet-list li{ position:relative; padding-left:28px; }
-    .bullet-list li::before{ content:"✓"; position:absolute; left:0; top:0; color:var(--pink); font-weight:800; font-size:1.1em; line-height:1; transform: translateY(2px); }
-
-    .info-box{
-      background: linear-gradient(135deg, #FFF5F7 0%, #F8E8EE 100%);
-      padding: clamp(12px,3.5vw,24px); border-radius:16px; margin-top:12px;
-      border-left:5px solid var(--pink); box-shadow: 0 6px 16px rgba(255,182,193,.18);
-    }
-
-    .feature-grid{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px; }
-    @media (min-width:560px){ .feature-grid{ grid-template-columns: repeat(2,1fr); } }
-    .feature-card{
-      background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
-      border:2px solid var(--pink-2); padding: clamp(12px,3.2vw,20px); border-radius:16px;
-      box-shadow: 0 5px 14px rgba(255,182,193,.15); transition: transform .2s ease;
-    }
-    .feature-card:hover{ transform: translateY(-3px); }
-    .feature-card h4{ color:var(--hot); font-size: clamp(14px,4.2vw,21px); margin:0 0 6px; }
-
-    .qa-item{ background: linear-gradient(135deg, #FFF9FB 0%, #FFE8F0 100%);
-      padding: clamp(12px,3.2vw,18px); border-radius:14px; margin:10px 0;
-      border-left:4px solid var(--pink); box-shadow:0 3px 10px rgba(255,182,193,.15); }
-    .qa-item strong{ color:var(--hot); font-size:1em; }
-
-    .special-box{
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
-      color:#fff; text-align:center; font-size: clamp(14px,4.2vw,19px);
-      margin-top:16px; padding: clamp(14px,3.8vw,24px); border-radius:20px; box-shadow: 0 10px 30px rgba(255,182,193,.35);
-    }
-    .contact-box{
-      background: linear-gradient(135deg, var(--pink) 0%, var(--violet) 100%);
-      color:#fff; padding: clamp(16px,4.5vw,30px); border-radius:20px; text-align:center; margin:16px 0;
-      box-shadow: 0 10px 30px rgba(255,182,193,.35);
-    }
-    .contact-box h3{ color:#fff; font-size: clamp(18px,5.2vw,28px); margin:0 0 10px; }
-    .contact-box p{ font-size: clamp(14px,4.2vw,20px); margin:6px 0; }
-    .emoji{ font-size:1.2em; margin-right:6px; }
-
-    .navigation{
-      position: sticky; bottom: 0; inset-inline: 0;
-      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px;
-      padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-      background: linear-gradient(135deg, #FFF5F7 0%, #FFE8F0 100%);
-      border-top: 2px solid var(--pink-2); box-shadow: 0 -8px 20px rgba(255,182,193,.18); z-index:10;
-    }
-    .nav-btn{
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
-      color:#fff; border:none; padding:14px 18px; border-radius:999px; cursor:pointer;
-      font-size: clamp(14px,4.3vw,16px); font-weight:700; transition: transform .15s ease;
-      box-shadow: 0 6px 16px rgba(255,182,193,.32); min-height:48px;
-    }
-    .nav-btn:active{ transform: scale(.98) }
-    .nav-btn:disabled{ opacity:.35; cursor:not-allowed; }
-    .slide-counter{ text-align:center; font-size: clamp(12px,3.8vw,14px); color:var(--accent); font-weight:700; min-width:88px; }
-    @media (orientation: landscape) and (max-width:932px){
-      body{ padding-bottom: calc(env(safe-area-inset-bottom) + 72px); }
-      .navigation{ padding:8px 12px calc(8px + env(safe-area-inset-bottom)); }
-    }
-    .video-box{
-      aspect-ratio: 16/9; width: 100%;
-      background: #faf5f7; border: 2px dashed #ffbfd0; border-radius: 12px;
-      display:flex; align-items:center; justify-content:center; color:#b37a8c; margin-top:10px;
-      font-size: clamp(13px,3.8vw,16px);
-    }
-  </style>
+  <!-- 外部CSSを読み込む順番に注意 -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <div class="container" id="deck">
-    <!-- 1: 表紙 -->
-    <section class="slide slide-cover active" aria-label="表紙">
+
+    <!-- 表紙 -->
+    <section class="slide slide-cover active">
       <h1>千束町 歯のクリニック</h1>
       <div class="tagline">「笑顔とやさしさを広げる」</div>
       <p class="greeting">学生のみなさん、こんにちは！</p>
     </section>
 
-    <!-- 2: 医院紹介（そのまま） -->
-    <section class="slide" aria-label="医院紹介">
-      <h2>🏥 医院紹介</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li>土浦市千束町の大きな交差点にある歯科クリニック</li>
-          <li>アクセス良好（車・自転車・徒歩OK）</li>
-          <li>患者さんもスタッフも <span class="highlight">自然な笑顔で安心できる雰囲気</span></li>
-        </ul>
-        <div class="info-box">
-          地域に根ざした、通いやすい歯科クリニックです。明るく開放的な空間で、患者様に安心して治療を受けていただけます。
-        </div>
-      </div>
-    </section>
-
-    <!-- 3: 理念（修正） -->
-    <section class="slide" aria-label="理念">
+    <!-- 理念 -->
+    <section class="slide">
       <h2>💖 理念</h2>
       <div class="content">
         <div class="special-box"><strong>『関わる全ての方を幸せに』</strong></div>
@@ -149,263 +32,63 @@
       </div>
     </section>
 
-    <!-- 4: 魅力① 人間関係（そのまま） -->
-    <section class="slide" aria-label="魅力：人間関係">
-      <h2>✨ 魅力① 人間関係</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li><span class="highlight">院長が優しい！</span></li>
-          <li>怖い先輩・上司はいません</li>
-          <li>スタッフみんな仲良し＆協力し合える雰囲気</li>
-        </ul>
-        <div class="info-box">アットホームで温かい職場。分からないことは何でも聞ける、風通しの良いチームです。</div>
-      </div>
-    </section>
-
-    <!-- 5: 魅力② 環境（そのまま） -->
-    <section class="slide" aria-label="魅力：環境">
-      <h2>🏢 魅力② 環境</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li>2020年4月オープンの <span class="highlight">新しく清潔でおしゃれな医院</span></li>
-          <li>開放的な雰囲気で最新設備を導入</li>
-          <li>石膏や注油も自動化 → 仕事がスムーズ</li>
-        </ul>
-        <div class="info-box">最新設備と快適な環境で効率的に働けます。清潔で明るい空間はスタッフにも患者様にも好評です。</div>
-      </div>
-    </section>
-
-    <!-- 6: 魅力③ 制服（修正） -->
-    <section class="slide" aria-label="魅力：制服">
+    <!-- 制服 -->
+    <section class="slide">
       <h2>👗 魅力③ 制服</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li><span class="highlight">ジェラートピケ、ロンハーマン</span> などのスクラブ（全6種類）</li>
-          <li>カーディガン、ヒートテックなども支給</li>
-          <li>可愛い制服で毎日の出勤が楽しみ</li>
-        </ul>
-      </div>
+      <ul class="bullet-list">
+        <li><span class="highlight">ジェラートピケ、ロンハーマン</span> などのスクラブ（全6種類）</li>
+        <li>カーディガン、ヒートテックなども支給</li>
+        <li>可愛い制服で毎日の出勤が楽しみ</li>
+      </ul>
     </section>
 
-    <!-- 7: 魅力④ 新人研修（修正） -->
-    <section class="slide" aria-label="魅力：新人研修">
-      <h2>📚 魅力④ 新人研修</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li><span class="highlight">安心の研修システム</span>（マニュアルに沿って学べる）</li>
-          <li>先輩がマンツーマンで丁寧に指導</li>
-          <li>メディア実績のある先生が来院、最前線の臨床に活かせる学びがあります</li>
-        </ul>
-        <div class="info-box">
-          上間京子先生（社団法人Jokanスクール 主任DH）<br>
-          大澤愛先生（日本歯周病学会 認定DH）
-        </div>
-      </div>
-    </section>
-
-    <!-- 8: 魅力⑤ 患者層（修正） -->
-    <section class="slide" aria-label="魅力：患者層">
-      <h2>👨‍👩‍👧‍👦 魅力⑤ 患者層</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li>小児からご高齢まで幅広い患者様</li>
-          <li>一般歯科、予防歯科、小児歯科、審美歯科、インプラント、矯正歯科、口腔外科など幅広い診療</li>
-          <li><span class="highlight">衛生士業務をしっかり任せてもらえる</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 9: 魅力⑥ 福利厚生（修正） -->
-    <section class="slide" aria-label="魅力：福利厚生">
-      <h2>🎉 魅力⑥ 福利厚生</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li>奨学金制度あり</li>
-          <li>一般歯科治療無料</li>
-          <li>ホワイトニング、矯正、歯磨剤や歯ブラシなどの社員割あり</li>
-          <li>出産育児制度あり（時短勤務可）</li>
-          <li>仕事もプライベートも楽しく充実</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 10: 仕事内容（新規） -->
-    <section class="slide" aria-label="仕事内容">
-      <h2>🦷 仕事内容</h2>
-      <div class="content">
-        <ul class="bullet-list">
-          <li>衛生士業務（メンテ、歯周治療、ホワイトニング）</li>
-          <li>アシスタント</li>
-          <li>希望者は矯正歯科治療</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 11: 一日のタイムスケジュール（新規・動画枠あり） -->
-    <section class="slide" aria-label="一日のタイムスケジュール">
+    <!-- 一日のタイムスケジュール -->
+    <section class="slide">
       <h2>⏱ 一日のタイムスケジュール</h2>
-      <div class="content">
-        <video
-          controls
-          playsinline
-          webkit-playsinline
-          preload="metadata"
-          poster="images/thumbnail.jpg"
-          style="width:100%;height:auto;border-radius:12px;">
-          <source src="videos/clinic_day.mp4" type="video/mp4" />
-          <track kind="captions" src="captions/clinic_day.vtt" srclang="ja" label="日本語" default>
-          お使いのブラウザは動画再生に対応していません。
-        </video>
-
-        <div class="info-box">
-          〈平日〉9:00〜18:30（昼休み 14:00〜15:30）<br>
-          〈土日祝〉8:30〜17:00（昼休み 14:00〜15:00）
-        </div>
+      <video class="video-box" controls>
+        <source src="video/schedule.mp4" type="video/mp4">
+        お使いのブラウザは動画に対応していません
+      </video>
+      <div class="info-box">
+        〈平日〉9:00〜18:30（昼休み14:00〜15:30）<br>
+        〈土日祝〉8:30〜17:00（昼休み14:00〜15:00）
       </div>
     </section>
 
-    <!-- 12: 新卒の年間スケジュール（新規） -->
-    <section class="slide" aria-label="新卒の年間スケジュール">
-      <h2>📅 新卒の年間スケジュール（個人差あり）</h2>
-      <div class="content">
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h4>4月〜6月</h4>
-            <p>医院の流れを覚える／アシスタント業務中心</p>
-          </div>
-          <div class="feature-card">
-            <h4>7月〜9月</h4>
-            <p>小児のP処デビュー／基本検査・スケーリング練習</p>
-          </div>
-          <div class="feature-card">
-            <h4>10月〜1月</h4>
-            <p>基本検査／スケーリングデビュー</p>
-          </div>
-          <div class="feature-card">
-            <h4>2月〜4月</h4>
-            <p>SRP練習</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 13: 募集要項（仮・修正） -->
-    <section class="slide" aria-label="募集要項">
+    <!-- 募集要項 -->
+    <section class="slide">
       <h2>💼 募集要項（仮）</h2>
-      <div class="content">
-        <div class="feature-grid">
-          <div class="feature-card"><h4>基本給</h4><p>170,000円</p></div>
-          <div class="feature-card"><h4>衛生士手当</h4><p>65,000円</p></div>
-        </div>
-        <div class="info-box">※内容は確定前のため変更の可能性があります。</div>
+      <div class="feature-grid">
+        <div class="feature-card"><h4>基本給</h4><p>170,000円</p></div>
+        <div class="feature-card"><h4>衛生士手当</h4><p>65,000円</p></div>
       </div>
+      <div class="info-box">※内容は確定前のため変更の可能性あり</div>
     </section>
 
-        <hr class="section-divider">
-
-    <!-- 11: 先輩の声 -->
-    <section class="section">
-      <h2>💬 先輩の声</h2>
-      <div class="content">
-        <div class="info-box"><span class="emoji">👩‍⚕️</span>「最初は不安でしたが、先輩がマンツーマンで支えてくれて安心でした」</div>
-        <div class="info-box"><span class="emoji">👩‍⚕️</span>「研修制度がしっかりしていて、自信を持って患者さん対応できるようになりました」</div>
-        <div class="info-box"><span class="emoji">👩‍⚕️</span>「スタッフみんな仲が良くて、毎日楽しく働いています」</div>
-      </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- 12: よくある質問 -->
-    <section class="section">
-      <h2>❓ よくある質問</h2>
-      <div class="content">
-        <div class="qa-item"><strong>Q: 残業は？</strong><br>A: ほぼなし！定時退勤が基本です。</div>
-        <div class="qa-item"><strong>Q: 新人でも大丈夫？</strong><br>A: マンツーマン研修で安心してスタートできます。</div>
-        <div class="qa-item"><strong>Q: セミナー参加は？</strong><br>A: 医院が費用をサポートします。</div>
-        <div class="qa-item"><strong>Q: 産休・育休は？</strong><br>A: 実績あり、ママ社員も活躍中です。</div>
-      </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- 14: 最後に（見学/アルバイトCTA・修正） -->
-    <section class="slide" aria-label="最後に">
+    <!-- 見学・アルバイト案内 -->
+    <section class="slide">
       <h2>🌟 最後に</h2>
-      <div class="content">
-        <div class="special-box">
-          <p><strong>まずは見学だけでも大歓迎！</strong><br>
-          ちょっと覗く気持ちでOK。雰囲気を感じに来てください😊</p>
-          <p>アルバイトも歓迎（時給1,100円／学校と両立OK）</p>
-        </div>
-        <div class="contact-box">
-          <h3>見学のお申込み・お問い合わせ</h3>
-          <p><strong>TEL：029-875-5130</strong></p>
-          <p>千束町 歯のクリニック</p>
-        </div>
+      <div class="special-box">
+        <p><strong>まずは見学だけでも大歓迎！</strong><br>
+        ちょっと覗く気持ちでOK。雰囲気を感じに来てください😊</p>
+        <p>アルバイトも歓迎（時給1,100円／学校と両立OK）</p>
+      </div>
+      <div class="contact-box">
+        <h3>見学のお申込み・お問い合わせ</h3>
+        <p><strong>TEL：029-875-5130</strong></p>
+        <p>千束町 歯のクリニック</p>
       </div>
     </section>
 
     <!-- ナビゲーション -->
-    <nav class="navigation" aria-label="スライドナビゲーション">
-      <button class="nav-btn" id="prevBtn" type="button">← 前へ</button>
-      <div class="slide-counter">
-        <span id="currentSlide">1</span> / <span id="totalSlides">--</span>
-      </div>
-      <button class="nav-btn" id="nextBtn" type="button">次へ →</button>
+    <nav class="navigation">
+      <button class="nav-btn" id="prevBtn">← 前へ</button>
+      <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">--</span></div>
+      <button class="nav-btn" id="nextBtn">次へ →</button>
     </nav>
   </div>
 
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const currentEl = document.getElementById('currentSlide');
-    const totalEl = document.getElementById('totalSlides');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    totalEl.textContent = totalSlides;
-
-    function updateButtons(){
-      prevBtn.disabled = currentSlide === 0;
-      nextBtn.disabled = currentSlide === totalSlides - 1;
-      currentEl.textContent = currentSlide + 1;
-    }
-    function showSlide(n){
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (n + totalSlides) % totalSlides;
-      slides[currentSlide].classList.add('active');
-      slides[currentSlide].scrollTo?.({top:0, behavior:'instant'});
-      updateButtons();
-    }
-    function changeSlide(delta){ showSlide(currentSlide + delta); }
-
-    prevBtn.addEventListener('click', () => changeSlide(-1));
-    nextBtn.addEventListener('click', () => changeSlide(1));
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') changeSlide(-1);
-      if (e.key === 'ArrowRight') changeSlide(1);
-    });
-
-    // スワイプ操作（iPhone）
-    let touchStartX = 0, touchEndX = 0, touchStartY = 0, touchEndY = 0;
-    const deck = document.getElementById('deck');
-    deck.addEventListener('touchstart', (e) => {
-      const t = e.changedTouches[0];
-      touchStartX = t.clientX; touchStartY = t.clientY;
-    }, {passive:true});
-    deck.addEventListener('touchend', (e) => {
-      const t = e.changedTouches[0];
-      touchEndX = t.clientX; touchEndY = t.clientY;
-      const dx = touchEndX - touchStartX; const dy = touchEndY - touchStartY;
-      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)){
-        if (dx < 0) changeSlide(1); else changeSlide(-1);
-      }
-    }, {passive:true});
-
-    // 初期化
-    slides[0].classList.add('active');
-    updateButtons();
-  </script>
+  <!-- JS -->
+  <script src="js/script.js"></script>
 </body>
 </html>
