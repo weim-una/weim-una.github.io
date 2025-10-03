@@ -86,7 +86,11 @@
 
     .special-box {
       background: linear-gradient(135deg, var(--pink) 0%, var(--pink-2) 100%);
-      color:#fff; text-align:center; margin-top:16px; padding: clamp(14px,3.8vw,24px); border-radius:20px;
+      color:#fff; text-align:center; margin-top:16px; padding: clamp(16px,4vw,28px); border-radius:20px;
+    }
+    .special-box strong { 
+      font-size: clamp(16px,4.5vw,22px); 
+      display: block;
     }
     .special-box p { margin: 8px 0; }
     .contact-box {
@@ -101,6 +105,20 @@
       aspect-ratio:16/9; 
       border-radius:12px; 
       margin-top:10px;
+      background: linear-gradient(135deg, #FFE8F0 0%, #E8F5FF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 600;
+      border: 2px dashed var(--pink-2);
+    }
+    
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      margin-top: 16px;
       background: linear-gradient(135deg, #FFE8F0 0%, #E8F5FF 100%);
       display: flex;
       align-items: center;
@@ -138,6 +156,9 @@
     <!-- 理念 -->
     <section class="section">
       <h2>💖 理念</h2>
+      <div class="image-placeholder">
+        🖼️ 見出し画像
+      </div>
       <div class="content">
         <div class="special-box"><strong>『関わる全ての方を幸せに』</strong></div>
         <ul class="bullet-list">
@@ -151,6 +172,9 @@
     <!-- 魅力① -->
     <section class="section">
       <h2>✨ 魅力① 働きやすい環境</h2>
+      <div class="image-placeholder">
+        🖼️ 見出し画像
+      </div>
       <ul class="bullet-list">
         <li>完全週休2日制（平日1日＋日曜）で、プライベートも充実</li>
         <li>残業ほぼなし！定時で帰れる職場</li>
@@ -162,6 +186,9 @@
     <!-- 魅力② -->
     <section class="section">
       <h2>🌱 魅力② 成長をサポート</h2>
+      <div class="image-placeholder">
+        🖼️ 見出し画像
+      </div>
       <ul class="bullet-list">
         <li>充実した研修制度で、新人さんも安心</li>
         <li>先輩衛生士がマンツーマンでフォロー</li>
@@ -173,10 +200,27 @@
     <!-- 制服 -->
     <section class="section">
       <h2>👗 魅力③ 制服</h2>
+      <div class="image-placeholder">
+        🖼️ 見出し画像
+      </div>
       <ul class="bullet-list">
         <li><span class="highlight">ジェラートピケ、ロンハーマン</span> などのスクラブ（全6種類）</li>
         <li>カーディガン、ヒートテックなども支給</li>
         <li>可愛い制服で毎日の出勤が楽しみ</li>
+      </ul>
+    </section>
+
+    <!-- 新人研修 -->
+    <section class="section">
+      <h2>📚 魅力④ 新人研修</h2>
+      <div class="image-placeholder">
+        🖼️ 新人研修の様子
+      </div>
+      <ul class="bullet-list">
+        <li>入社後、丁寧な研修プログラムでサポート</li>
+        <li>基礎から応用まで、段階的に学べる環境</li>
+        <li>先輩がそばでフォローするので安心</li>
+        <li>実践的なスキルをしっかり身につけられる</li>
       </ul>
     </section>
 
@@ -189,6 +233,9 @@
       <div class="info-box">
         <strong>〈平日〉</strong>9:00〜18:30（昼休み14:00〜15:30）<br>
         <strong>〈土日祝〉</strong>8:30〜17:00（昼休み14:00〜15:00）
+      </div>
+      <div class="image-placeholder">
+        🖼️ 治療している様子
       </div>
     </section>
 
