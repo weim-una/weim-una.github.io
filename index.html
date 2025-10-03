@@ -245,7 +245,18 @@
     <section class="slide" aria-label="一日のタイムスケジュール">
       <h2>⏱ 一日のタイムスケジュール</h2>
       <div class="content">
-        <div class="video-box">（ここに動画を挿入）</div>
+        <video
+          controls
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+          poster="images/thumbnail.jpg"
+          style="width:100%;height:auto;border-radius:12px;">
+          <source src="videos/clinic_day.mp4" type="video/mp4" />
+          <track kind="captions" src="captions/clinic_day.vtt" srclang="ja" label="日本語" default>
+          お使いのブラウザは動画再生に対応していません。
+        </video>
+
         <div class="info-box">
           〈平日〉9:00〜18:30（昼休み 14:00〜15:30）<br>
           〈土日祝〉8:30〜17:00（昼休み 14:00〜15:00）
