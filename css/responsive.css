@@ -1,1 +1,17 @@
+/* タブレット */
+@media (max-width: 1024px) {
+  h2 { font-size: 2em; }
+  .slide { padding: 40px; }
+}
+/* スマホ */
+@media (max-width: 768px) {
+  body { padding: 8px; }
+  .slide { padding: 24px 16px; }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+/* 小型スマホ */
+@media (max-width: 480px) {
+  h2 { font-size: 1.4em; }
+  .nav-btn { padding: 10px 14px; font-size: 0.9em; }
+}
 
